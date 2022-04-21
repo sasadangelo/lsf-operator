@@ -1,0 +1,20 @@
+# permissions for end users to view lsfclusters.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: lsfcluster-viewer-role
+rules:
+- apiGroups:
+  - lsf.spectrumcomputing.ibm.com
+  resources:
+  - lsfclusters
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - lsf.spectrumcomputing.ibm.com
+  resources:
+  - lsfclusters/status
+  verbs:
+  - get

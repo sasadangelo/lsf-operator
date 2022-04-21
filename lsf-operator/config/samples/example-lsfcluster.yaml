@@ -1,0 +1,335 @@
+#--------------------------------------------------------
+# Copyright IBM Corp. 2020. All rights reserved.
+# US Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#--------------------------------------------------------
+#
+apiVersion: lsf.spectrumcomputing.ibm.com/v1
+kind: LSFCluster
+metadata:
+  name: example-lsfcluster
+  labels:
+    app.kubernetes.io/name: "ibm-spectrum-lsf"
+    app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+    app.kubernetes.io/instance: "lsf"
+    release: "lsf"
+
+spec:
+  # Indicate acceptance of the Licenses
+  # The licenses are available from this site:
+  #      http://www-03.ibm.com/software/sla/sladb.nsf
+  # Use the search option to find IBM Spectrum LSF CE
+  licenseAccepted: false
+
+  # This flag is used to control the network access mode.  This has security
+  # and scalability implications.  The options are:
+  #   k8s     - This will use the software defined networking provided by
+  #             kubernetes.  LSF will be hosted entirely in Kubernetes.
+  #             Access to LSF will be through the GUI, API, or login nodes.
+  #             This is not for high scale.  No bare metal compute hosts are
+  #             allowed.
+  #   host    - This will use hostNetworking in Kubernetes to give the LSF pod
+  #             direct access to the network.  This mode supports bare metal compute
+  #             hosts and high scale.  It requires that there be no more than
+  #             one LSF pod on any Kubernetes worker node.  Use the placement
+  #             labels in the LSF zone yaml to control how the LSF pods will
+  #             be placed on the worker nodes.
+  # NOTE:  A re-install is required to change this mode.
+  networking: k8s
+
+  # Provide an imagePullSecret when pulling images from a private registry
+  #imagepullsecret: use-your-secret
+
+  cluster:
+    clustername: mylsf2
+
+    # The administrators is a list of usernames that can perform
+    # LSF administrative functions using the LSF GUI.
+    #
+    # administrators:
+    # - someuser
+
+    # PersistentVolumeClaim (Storage volume) parameters
+    pvc:
+      dynamicStorage: false
+      #storageClass: ""
+      selectorLabel: "lsfvol"
+      selectorValue: "lsfvol"
+      size: "20G"
+
+    # The cluster needs to access users home directories and applications
+    # This section allows you to define the PersistentVolume to use to 
+    # access them.
+    #
+    # volumes:
+    # - name: "Home"
+    #   mount: "/home"
+    #   selectorLabel: "realhome"
+    #   selectorValue: "realhome"
+    #   accessModes: "ReadWriteMany"
+    #   size: "9G"
+    #   storageClass: ""
+    # - name: "Applications"
+    #   mount: "/apps"
+    #   selectorLabel: "apps"
+    #   selectorValue: "apps"
+    #   accessModes: "ReadOnlyMany"
+    #   size: ""
+    #   storageClass: ""
+
+    # This section is for configuring username resolution
+    # The pods will call "authconfig" to setup the authentication
+    # It can be used with the authentication schemes that "authconfig"
+    # supports.
+    #
+    # userauth:
+        # Configs are a list of secrets that will be passed to the 
+        # running pod as configuration files.  This is how to pass
+        # certificates to the authentication daemons.  The secret has
+        # a name and value and is created using:
+        #    kubectl create secret generic test-secret --from-file=(path to file)
+        # The actual filename in the pod is the filename from the configs
+        # list below plus the filename from the command above.
+        # Note: The permission is the decimal value e.g 0600 octal is 384 decimal
+        #       The configs will only be appied when there is a authconfigargs entry
+      # configs:
+      # - name: "test-secret"
+        # filename: "/etc/test/myconfig.file"
+        # permission: 384
+
+        # These are the arguments to invoke the "authconfig" command 
+        # with.  This will generate the needed configuration files.
+        # NOTE:  The "--nostart" argument will be added.
+      # authconfigargs: "--enableldap --enableldapauth --ldapserver=ldap://172.16.2.2/,ldap://172.16.2.3/ --ldapbasedn=dc=platformlab,dc=ibm,dc=com --update"
+
+        # List the daemons to start, e.g.  nslcd, and sssd
+      # starts:
+      # - /usr/sbin/nslcd
+
+
+  master:
+    image: "ibmcom/lsfce-master:10.1.0.9r02"
+    imagePullPolicy: "Always"
+
+    # The placement variables control how the pods will be placed
+    placement:
+      # includeLabel  - Optional label to apply to hosts that
+      #                 should be allowed to run the compute pod
+      includeLabel: ""
+    
+      # excludeLabel  - Is a label to apply to hosts to prevent
+      #                 them from being used to host the compute pod
+      excludeLabel: "excludelsf"
+
+      # Taints can be used to control which nodes are available
+      # to the LSF and Kubernetes scheduler.  If used these
+      # parameters are used to allow the LSF pods to run on
+      # tainted nodes.  When not defined the K8s master nodes
+      # will be used to host the master pod.
+      #
+      #  tolerateName  - Optional name of the taint that has been
+      #                  applied to a node
+      #  tolerateValue - The value given to the taint
+      #  tolerateEffect - The effect of the taint
+      #
+      tolerateName: ""
+      tolerateValue: ""
+      tolerateEffect: NoExecute
+
+    # Define the number of this type of pod you want to have running.
+    # Valid values for a master are 0 or 1.
+    replicas: 1
+
+    # These are the Memory and CPU allocations for the pod.
+    # Set the memory and cpu requests and limits to the same values
+    # to get a guaranteed QoS.
+    resources:
+      requests:
+        cpu: "1"
+        memory: "1G"
+      limits:
+        cpu: "1"
+        memory: "1G"
+
+    # The master pod will typically need to get access to the user data
+    # and home directory.  The mountList provides a way to access
+    # directories from the OS running on the Kubernetes worker nodes.
+    # This will be translated into hostPath volumeMounts for the pod.
+    # For example
+    # listing '/home' will cause /home from the worker OS to be
+    # mounted in the running container, allowing users to access there
+    # home directory (assuming automounter is setup).
+    #mountList:
+    #  - /home
+
+  gui:
+    image: "ibmcom/lsfce-gui:10.1.0.9r02"
+    imagePullPolicy: "Always"
+
+    # Database parameters
+    db:
+      image: "mariadb:10.4"
+      imagePullPolicy: "IfNotPresent"
+      cpu: 250m
+      memory: 256M
+      passwordSecret: "db-pass"
+
+    # The placement variables control how the pods will be placed
+    placement:
+      includeLabel: ""
+      excludeLabel: "excludelsf"
+      tolerateName: ""
+      tolerateValue: ""
+      tolerateEffect: NoExecute
+
+    # Define the number of this type of pod you want to have running.
+    # Valid values for a master are 0 or 1.
+    replicas: 1
+
+    # These are the Memory and CPU allocations for the pod.
+    # Set the memory and cpu requests and limits to the same values
+    # to get a guaranteed QoS.
+    resources:
+      requests:
+        cpu: "2"
+        memory: "16G"
+      limits:
+        cpu: "2"
+        memory: "16G"
+
+    #mountList:
+    #  - /home
+
+
+  # There can be a number of different compute pods running.  Each pod
+  # type supporting different applications.  Define a list of compute
+  # pods and there characteristics here.
+  computes:
+    # This is the start of a specific compute pod type.  The name
+    # given should be short and without spaces
+    - name: "RHEL7"
+    
+      # A meaningful description should be given to the pod.  It should
+      # describe what applications this pod is capable of running
+      description: "Compute pods for running app1 and app2"
+
+      # The compute pods will provide the resources for running
+      # various workloads.  Resources listed here will be assigned
+      # to the pods in LSF
+      provider:
+        - rhel7
+        - app1
+        - app2
+
+      # Define where to get the image from
+      image: "ibmcom/lsfce-comp:10.1.0.9r02"
+      imagePullPolicy: "Always"
+
+      # Define the number of this type of pod you want to have running
+      replicas: 1
+
+      # The placement variables control how the pods will be placed
+      placement:
+        # includeLabel  - Optional label to apply to hosts that 
+        #                 should be allowed to run the compute pod
+        includeLabel: ""
+
+        # excludeLabel  - Is a label to apply to hosts to prevent 
+        #                 them from being used to host the compute pod
+        excludeLabel: "excludelsf"
+
+        # Taints can be used to control which nodes are available 
+        # to the LSF and Kubernetes scheduler.  If used these 
+        # parameters are used to allow the LSF pods to run on 
+        # tainted nodes.  When not defined the K8s master nodes 
+        # will be used to host the master pod.
+        #
+        #  tolerateName  - Optional name of the taint that has been
+        #                  applied to a node
+        #  tolerateValue - The value given to the taint
+        #  tolerateEffect - The effect of the taint
+        #
+        tolerateName: ""
+        tolerateValue: ""
+        tolerateEffect: NoExecute
+
+      resources:
+        requests:
+          cpu: "2"
+          memory: "1G"
+        limits:
+          cpu: "2"
+          memory: "1G"
+        # gpu - defines if the compute pod should be created with 
+        #       support for the GPU.  Valid values are "yes|no".
+        # If set to "yes", the NVIDIA___ environment variables will be
+        # set and the nodeSelectorTerms will include the
+        # openshift.com/gpu-accelerator key with operator Exists.
+        # The seLinuxOptions will set the type to 'nvidia_container_t'
+        # and the SYS_ADMIN capability will be added for GPU mode switching
+        gpu: "no"
+
+      # The application running in the pods will typically need to get 
+      # access to the user data and even application binaries.  The 
+      # mountList provides a way to access directories from the OS
+      # running on the Kubernetes worker nodes.  This will be translated
+      # into hostPath volumeMounts for the pod to access. For example
+      # listing '/home' will cause /home from the worker OS to be 
+      # mounted in the running container, allowing users to access there
+      # home directory (assuming automounter is setup).
+      #mountList:
+      #  - /home
+      #  - /apps
+
+    # Create other compute types here to support other applications.
+    # - name: "RHEL6"
+    #   description: "Compute pods for Fluent and Nastran"
+    #   image: "lsf-comp-rhel6:10.1.0.9"
+    #   imagePullPolicy: "Always"
+    #   replicas: 1
+    #   placement:
+    #     includeLabel: ""
+    #     excludeLabel: "excludelsf"
+    #   resources:
+    #     requests:
+    #       cpu: "2"
+    #       memory: "1G"
+    #     limits:
+    #       cpu: "2"
+    #       memory: "1G"
+    #     gpu: "no"
+      #mountList:
+      #  - /home
+      #  - /apps
+    #   provider:
+    #     - rhel6
+    #     - nastran
+    #     - fluent
+      
+      
+    # - name: "RHEL6wGPU"
+    #   description: "Compute pods for Fluent and Nastran"
+    #   image: "docker-registry.default.svc:5000/ibm-lsf-project/lsf-comp-rhel6:10.1.0.9"
+    #   imagePullPolicy: "Always"
+    #   replicas: 0
+    #   placement:
+    #     includeLabel: ""
+    #     excludeLabel: "excludelsf"
+    #     tolerateName: ""
+    #     tolerateValue: ""
+    #     tolerateEffect: NoExecute
+    #   resources:
+    #     requests:
+    #       cpu: "2"
+    #       memory: "1G"
+    #     limits:
+    #       cpu: "2"
+    #       memory: "1G"
+    #     gpu: "yes"
+      #mountList:
+      #  - /home
+      #  - /apps
+    #   provider:
+    #     - nastran
+    #     - rhel6
+

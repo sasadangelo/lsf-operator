@@ -1,0 +1,12 @@
+---
+# Use the 'create api' subcommand to add watches to this file.
+- version: v1
+  group: lsf.spectrumcomputing.ibm.com
+  kind: LSFCluster
+  role: lsfcluster
+  blacklist:
+    - group: ""
+      version: v1
+      kind: ConfigMap
+
+#+kubebuilder:scaffold:watch

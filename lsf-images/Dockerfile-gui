@@ -1,0 +1,77 @@
+#--------------------------------------------------------
+# Copyright IBM Corp. 1992, 2017. All rights reserved.
+# US Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#--------------------------------------------------------
+# IBM Spectrum LSF Suite for ICP 
+FROM lsf-comp-@NARCH@:@VERSION@
+
+LABEL name="lsf-gui-@NARCH@" \
+      vendor="IBM" \
+      version="@VERSION@" \
+      release="1" \
+      summary="IBM Spectrum LSF GUI Image" \
+      description="This image contains the GUI for IBM Spectrum LSF. "
+
+
+ADD podfiles /root
+
+# Install LSF master packages
+RUN cp -r /opt/ibm/lsfsuite/lsf/.conf_tmpl /opt/ibm/lsfsuite/lsf/conf \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                      Prepare for LSF GUI Install                         -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && export USE_REMOTE_DB=Y \
+    && export PAC_CLUSTER_NAME="ac_cluster" \
+    && export export ES_PORT="9200" \
+    && export export JAVA_HOME="/opt/ibm/jre" \
+    && export JS_ENVDIR="/opt/ibm/lsfsuite/ext/ppm/conf" \
+    && export LSF_ENVDIR=/opt/ibm/lsfsuite/lsf/conf \
+    && export LSF_BINDIR=/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/bin \
+    && export LSF_SERVERDIR=/opt/ibm/lsfsuite/lsf/10.1/linux2.6-glibc2.3-x86_64/etc \
+    && export MYSQL_JDBC_DRIVER_JAR=/usr/share/java/mysql-connector-java.jar \
+    && mkdir -p /opt/ibm/lsfsuite/lsf/work/myCluster/logdir/stream \
+    && touch /opt/ibm/lsfsuite/lsf/work/myCluster/logdir/stream/lsb.stream \
+    && chown -R lsfadmin /opt/ibm/lsfsuite/lsf/work \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----               Install database and connector Packages                    -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && yum -y install mysql-connector-java mariadb --setopt=tsflags=nodocs \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                       Install LSF Packages                               -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && rpm -ivh /lsf-repo/ibm-jre* \
+    && rpm -ivh /lsf-repo/lsf-gui* \
+    && rpm -ivh /lsf-repo/lsf-perf* \
+    && rpm -ivh /lsf-repo/lsf-appcenter* \
+    && rpm -ivh /lsf-repo/lsf-ego-server* \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                       Cleaning up config                                 -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && /usr/sbin/ldconfig \
+    && yum clean all \
+    && rm -rf /var/cache/yum \
+    && rm -rf /opt/ibm/lsfsuite/lsf/conf \
+    && mv /opt/ibm/lsfsuite/lsf/work /opt/ibm/lsfsuite/lsf/.work \
+    && cp /root/start_lsf.sh /start_lsf.sh \
+    && chmod 755 /start_lsf.sh \
+    # Need to move the work and conf dirs of the GUI components
+    && mv /opt/ibm/lsfsuite/ext/gui/conf /opt/ibm/lsfsuite/ext/gui/.conf \
+    && mv /opt/ibm/lsfsuite/ext/gui/work /opt/ibm/lsfsuite/ext/gui/.work \
+    && mv /opt/ibm/lsfsuite/ext/perf/conf /opt/ibm/lsfsuite/ext/perf/.conf \
+    && mv /opt/ibm/lsfsuite/ext/perf/work /opt/ibm/lsfsuite/ext/perf/.work \
+    #&& mv /opt/ibm/lsfsuite/ext/ppm/conf /opt/ibm/lsfsuite/ext/ppm/.conf \
+    #&& mv /opt/ibm/lsfsuite/ext/ppm/work /opt/ibm/lsfsuite/ext/ppm/.work \
+    && rm -rf /root/start_lsf.sh /root/trigger-reconfig.sh /root/lsf.entitlement /root/lsf_suite_pkgs.repo /root/centos.repo \
+    && mv /etc/my.cnf /root/ \
+    && mv /etc/my.cnf.d /root/ \
+    && echo "Basic GUI Image ready."
+
+#
+EXPOSE 8080
+
+ENTRYPOINT ["/start_lsf.sh"]

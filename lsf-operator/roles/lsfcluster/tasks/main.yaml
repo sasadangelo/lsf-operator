@@ -1,0 +1,42 @@
+##############################################################################
+# Licensed Materials - Property of IBM.
+# Copyright IBM Corporation 2019. All Rights Reserved.
+# U.S. Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#
+# Contributors:
+#  IBM Corporation - initial API and implementation
+###############################################################################
+---
+
+- name: Dump variables for debugging
+  template:
+    src: ../templates/dumpall.j2
+    dest: /tmp/variables.log
+
+- name: Check 1
+  debug:
+    msg: "_lsf_spectrumcomputing_ibm_com_lsfcluster is not defined"
+  when: _lsf_spectrumcomputing_ibm_com_lsfcluster is not defined
+        
+- name: Check 2
+  debug:
+    msg: "_lsf_spectrumcomputing_ibm_com_lsfcluster.spec.licenseAccepted is not defined"
+  when: _lsf_spectrumcomputing_ibm_com_lsfcluster.spec.licenseAccepted is not defined
+
+- name: Check that user has defined the lsfcluster.spec.licenseAccepted variable in there LSF cluster spec file. 
+  fail:
+    msg: The licensesAccepted variable is not defined.  You must indicate acceptance of the licenses by setting this variable to true in the lsfcluster spec. 
+  when: _lsf_spectrumcomputing_ibm_com_lsfcluster.spec.licenseAccepted is not defined
+
+- name: Check that user has accepted the licenses 
+  fail:
+    msg: You must indicate acceptance of the licenses by setting the spec.licenseAccepted variable to true in the lsfcluster spec. 
+  when: not _lsf_spectrumcomputing_ibm_com_lsfcluster.spec.licenseAccepted
+
+- name: "Get some cluster information"
+  set_fact:
+    api_groups: "{{ lookup('k8s', cluster_info='api_groups') }}"
+
+# Make a LSF cluster
+- include: lsf-main.yaml 

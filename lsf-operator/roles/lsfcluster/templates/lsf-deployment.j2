@@ -1,0 +1,221 @@
+---
+
+{% if master.replicas == 1 %}
+- name: Deploy Master
+  k8s:
+    definition:
+      kind: Deployment
+      metadata:
+        name: "{{ CNAME }}-master"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+          # Do not change below as it is tied to the PodPreset
+          role: master
+          # This is used to filter pods in the same namespace
+          lsftype: "ibm-spectrum-lsf"
+          lsfcluster: "{{ CNAME }}"
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app.kubernetes.io/name: "ibm-spectrum-lsf"
+            app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+            app.kubernetes.io/instance: "lsf"
+            release: "lsf"
+            role: master
+            lsftype: "ibm-spectrum-lsf"
+            lsfcluster: "{{ CNAME }}"
+        template:
+          metadata:
+            labels:
+              app.kubernetes.io/name: "ibm-spectrum-lsf"
+              app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+              app.kubernetes.io/instance: "lsf"
+              release: "lsf"
+              role: master
+              lsftype: "ibm-spectrum-lsf"
+              lsfcluster: "{{ CNAME }}"
+            annotations:
+              productID: IBM Spectrum LSF---9999K99
+              productName: IBM Spectrum LSF Community Edition
+              productVersion: 10.1.0.9
+
+          spec:
+            serviceAccountName: "{{ CNAME }}-sa"
+            hostIPC: false
+{% if networking is defined and networking == 'host' %}
+            hostNetwork: true
+{% else %}
+            hostNetwork: false
+{% endif %}
+            hostPID: false
+            securityContext:
+              runAsNonRoot: false
+
+            tolerations:
+              - key: "dedicated"
+                operator: "Exists"
+                effect: NoSchedule
+{% if master.placement.tolerateName is defined and master.placement.tolerateName != '' %}
+              - key: "{{ master.placement.tolerateName }}"
+{% if master.placement.tolerateValue is defined and master.placement.tolerateValue != '' %}
+                value: "{{ master.placement.tolerateValue }}"
+                operator: "Equal"
+{% else %}
+                operator: "Exists"
+{% endif %}
+                effect: "{% if master.placement.tolerateEffect is defined and master.placement.tolerateEffect != '' %}{{ master.placement.tolerateEffect }}{% else %}NoSchedule{% endif %}"
+{% endif %}
+            affinity:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values:
+                      - amd64
+                      - ppc64le
+{% if master.placement.includeLabel is defined and master.placement.includeLabel != '' %}
+                    - key: "{{ master.placement.includeLabel }}"
+                      operator: "Exists"
+{% endif %}
+{% if master.placement.excludeLabel is defined and master.placement.excludeLabel != '' %}
+                    - key: "{{ master.placement.excludeLabel }}"
+                      operator: "DoesNotExist"
+{% endif %}
+            subdomain: default-subdomain
+            dnsPolicy: ClusterFirst
+            hostname: lsfmaster
+            containers:
+              - name: ibm-spectrum-lsf
+                image: "{{ master.image }}"
+                imagePullPolicy: "{{ master.imagePullPolicy | default('Always') }}"
+                securityContext:
+                  allowPrivilegeEscalation: true
+                  capabilities:
+                    add:
+                    - KILL
+                    - SETUID
+                    - SETGID
+                    - CHOWN
+                    - SETPCAP
+                    - NET_BIND_SERVICE
+                    - DAC_OVERRIDE
+                    - SYS_TTY_CONFIG
+                    drop:
+                    - ALL
+                  privileged: false
+                  readOnlyRootFilesystem: false
+                args: [ "master", "yes", "{{ POD_PREFIX }}", "lsf" ]
+                env:
+                - name: IMAGERESOURCE
+                  value: "{{ allproviders | default('') }}"
+                - name: CLUSTERNAME
+                  value: "{{ cluster.clustername | default('lsf') }}"
+                - name: NETWORKING
+                  value: "{{ networking | default('k8s') }}"
+{% if cluster.userauth.authconfigargs is defined and cluster.userauth.authconfigargs != '' %}
+                - name: "AUTHCFGARGS"
+                  value: "{{ cluster.userauth.authconfigargs }}"
+{% if cluster.userauth.starts is defined and cluster.userauth.starts is not none %}
+                - name: "AUTHDAEMONS"
+                  value: "{{ cluster.userauth.starts | join(' ') }}"
+{% endif %}
+{% endif %}
+{% if cluster.administrators is defined and cluster.administrators is not none %}
+                - name: "ENV_ADD_ADMIN_LIST"
+                  value: "{{ cluster.administrators | unique |join(' ') }}"
+{% endif %}
+                resources:
+                  requests:
+                    cpu: "{{ master.resources.requests.cpu }}"
+                    memory: "{{ master.resources.requests.memory }}"
+                  limits:
+                    cpu: "{{ master.resources.limits.cpu }}"
+                    memory: "{{ master.resources.limits.memory }}"
+                readinessProbe:
+                  exec:
+                    command:
+                      - ls
+                      - /tmp/lsf-ready
+                  initialDelaySeconds: 45
+                  periodSeconds: 60
+                livenessProbe:
+                  exec:
+                    command:
+                      - ls
+                      - /tmp/lsf-alive
+                  initialDelaySeconds: 60
+                  periodSeconds: 60
+                volumeMounts:
+                  - name: conf-volume
+                    mountPath: "/opt/ibm/lsfsuite/lsfadmin"
+{% if master.mountList is defined and master.mountList is not none %}
+{% for mount in master.mountList %}
+                  - name: "{{ mount | replace('/', '') }}"
+                    mountPath: "{{ mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+                  - name: "{{ vol.name | lower | replace(' ', '-') }}"
+                    mountPath: "{{ vol.mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.userauth.authconfigargs is defined and
+cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined
+and cluster.userauth.configs is not none %}
+{% for acfg in cluster.userauth.configs %}
+                  - name: "{{ acfg.name | lower | replace(' ', '-') }}"
+                    mountPath: "/.config/{{ acfg.filename }}"
+                    readOnly: true
+{% endfor %}
+{% endif %}
+{% if imagepullsecret is defined and imagepullsecret != '' %}
+            imagePullSecrets:
+              - name: "{{ imagepullsecret }}"
+{% endif %}
+            restartPolicy: Always
+            volumes:
+              - name: conf-volume
+                persistentVolumeClaim:
+                  claimName: "{{ CNAME }}-pvc"
+{% if cluster.userauth.authconfigargs is defined and
+cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined
+and cluster.userauth.configs is not none %}
+{% for acfg in cluster.userauth.configs %}
+              - name: "{{ acfg.name | lower | replace(' ', '-') }}"
+                secret:
+                  secretName: "{{ acfg.name }}"
+{% if acfg.permission is defined %}
+                  defaultMode: {{ acfg.permission }}
+{% endif %}                 
+{% endfor %}
+{% endif %}
+{% if master.mountList is defined and master.mountList is not none %}
+{% for mount in master.mountList %}
+              - name: "{{ mount | replace('/', '') }}"
+                hostPath:
+                  path: "{{ mount }}"
+{% endfor %}
+{% endif %}
+
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+              - name: "{{ vol.name | lower | replace(' ', '-') }}"
+                persistentVolumeClaim:
+                  claimName: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
+# Removed Extra trailing space in claimName
+{% endfor %}
+{% endif %}
+
+{% else %}
+- name: No master Requested
+  debug:
+    msg: "Cluster has been requested with no Master"
+{% endif %}

@@ -1,0 +1,34 @@
+---
+# tasks file for lsf
+- name: Create access to the GUI
+  k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: "{{ CNAME }}-service"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+          role: gui
+        annotations:
+          lsf-gui/port: "8080"
+      spec:
+        selector:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+          role: gui
+        ports:
+        - protocol: TCP
+          port: 8080
+          targetPort: 8080
+        # loadBalancerIP: 172.29.0.1
+        # type: LoadBalancer
+
+

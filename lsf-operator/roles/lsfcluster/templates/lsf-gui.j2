@@ -1,0 +1,267 @@
+---
+
+{% if gui.replicas >= 1 %}
+- name: Deploy GUI
+  k8s:
+    definition:
+      kind: Deployment
+      metadata:
+        name: "{{ CNAME }}-gui"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+          lsftype: "ibm-spectrum-lsf"
+          # Do not change below as it is tied to the PodPreset
+          role: gui
+          lsfcluster: "{{ CNAME }}"
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app.kubernetes.io/name: "ibm-spectrum-lsf"
+            app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+            app.kubernetes.io/instance: "lsf"
+            release: "lsf"
+            role: gui
+            lsftype: "ibm-spectrum-lsf"
+            lsfcluster: "{{ CNAME }}"
+        template:
+          metadata:
+            labels:
+              app.kubernetes.io/name: "ibm-spectrum-lsf"
+              app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+              app.kubernetes.io/instance: "lsf"
+              release: "lsf"
+              role: gui
+              lsftype: "ibm-spectrum-lsf"
+              lsfcluster: "{{ CNAME }}"
+            annotations:
+              productID: IBM Spectrum LSF---9999K99
+              productName: IBM Spectrum LSF Community Edition
+              productVersion: 10.1.0.9
+
+          spec:
+            serviceAccountName: "{{ CNAME }}-agent-sa"
+            hostIPC: false
+            hostNetwork: false
+            hostPID: false
+            securityContext:
+              runAsNonRoot: false
+
+            tolerations:
+              - key: "dedicated"
+                operator: "Exists"
+                effect: NoSchedule
+{% if gui.placement.tolerateName is defined and gui.placement.tolerateName != '' %}
+              - key: "{{ gui.placement.tolerateName }}"
+{% if gui.placement.tolerateValue is defined and gui.placement.tolerateValue != '' %}
+                value: "{{ gui.placement.tolerateValue }}"
+                operator: "Equal"
+{% else %}
+                operator: "Exists"
+{% endif %}
+                effect: "{% if gui.placement.tolerateEffect is defined and gui.placement.tolerateEffect != '' %}{{ gui.placement.tolerateEffect }}{% else %}NoSchedule{% endif %}"
+{% endif %}
+            affinity:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values:
+                      - amd64
+                      - ppc64le
+{% if gui.placement.includeLabel is defined and gui.placement.includeLabel != '' %}
+                    - key: "{{ gui.placement.includeLabel }}"
+                      operator: "Exists"
+{% endif %}
+{% if gui.placement.excludeLabel is defined and gui.placement.excludeLabel != '' %}
+                    - key: "{{ gui.placement.excludeLabel }}"
+                      operator: "DoesNotExist"
+{% endif %}
+            subdomain: default-subdomain
+            dnsPolicy: ClusterFirst
+            hostname: gui
+            containers:
+              - name: gui
+                image: "{{ gui.image }}"
+                imagePullPolicy: "{% if gui.imagePullPolicy is defined %}{{ gui.imagePullPolicy }}{% else %}{{ gui.image_pull_policy }}{% endif %}"
+                securityContext:
+                  allowPrivilegeEscalation: true
+                  capabilities:
+                    add:
+                    - KILL
+                    - SETUID
+                    - SETGID
+                    - CHOWN
+                    - SETPCAP
+                    - NET_BIND_SERVICE
+                    - DAC_OVERRIDE
+                    - SYS_TTY_CONFIG
+                    drop:
+                    - ALL
+                  privileged: false
+                  readOnlyRootFilesystem: false
+                args: [ "gui", "yes", "{{ POD_PREFIX }}", "lsf" ]
+                env:
+                - name: IMAGERESOURCE
+                  value: "{{ allproviders | default('') }}"
+                - name: CLUSTERNAME
+                  value: "{{ cluster.clustername | default('lsf') }}"
+                - name: NETWORKING
+                  value: "{{ networking | default('k8s') }}"
+{% if cluster.userauth.authconfigargs is defined and cluster.userauth.authconfigargs != '' %}
+                - name: "AUTHCFGARGS"
+                  value: "{{ cluster.userauth.authconfigargs }}"
+{% if cluster.userauth.starts is defined and cluster.userauth.starts is not
+none %}
+                - name: "AUTHDAEMONS"
+                  value: "{{ cluster.userauth.starts | join(' ') }}"
+{% endif %}
+{% endif %}
+                resources:
+                  requests:
+                    cpu: "{{ gui.resources.requests.cpu }}"
+                    memory: "{{ gui.resources.requests.memory }}"
+                  limits:
+                    cpu: "{{ gui.resources.limits.cpu }}"
+                    memory: "{{ gui.resources.limits.memory }}"
+                readinessProbe:
+                  exec:
+                    command:
+                      - ls
+                      - /tmp/lsf-ready
+                  initialDelaySeconds: 45
+                  periodSeconds: 60
+                livenessProbe:
+                  exec:
+                    command:
+                      - ls
+                      - /tmp/lsf-alive
+                  initialDelaySeconds: 60
+                  periodSeconds: 60
+                volumeMounts:
+                  - name: conf-volume
+                    mountPath: "/opt/ibm/lsfsuite/lsfadmin"
+                  - name: db-pass
+                    mountPath: "/opt/ibm/lsfsuite/db-pass"
+                    readOnly: true
+{% if gui.mountList is defined and gui.mountList is not none %}
+{% for mount in gui.mountList %}
+                  - name: "{{ mount | replace('/', '') }}"
+                    mountPath: "{{ mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+                  - name: "{{ vol.name | lower | replace(' ', '-') }}"
+                    mountPath: "{{ vol.mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.userauth.authconfigargs is defined and
+cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined
+and cluster.userauth.configs is not none %}
+{% for acfg in cluster.userauth.configs %}
+                  - name: "{{ acfg.name | lower | replace(' ', '-') }}"
+                    mountPath: "/.config/{{ acfg.filename }}"
+                    readOnly: true
+{% endfor %}
+{% endif %}
+              - name: db
+                image: "{{ gui.db.image }}"
+                imagePullPolicy: "{% if gui.db.imagePullPolicy is defined %}{{ gui.db.imagePullPolicy }}{% else %}{{ gui.db.image_pull_policy }}{% endif %}"
+                resources:
+                  requests:
+                    cpu: {{ gui.db.cpu }}
+                    memory: {{ gui.db.memory }}
+                  limits:
+                    cpu: {{ gui.db.cpu }}
+                    memory: {{ gui.db.memory }}
+                securityContext:
+                  fsGroup: 999
+                  supplementalGroups:
+                  - 999
+                  privileged: false
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+                    add:
+                    - CHOWN
+                    - SETUID
+                    - SETGID
+                  readOnlyRootFilesystem: false
+                args: ["--datadir", "/pvc/mariadb"]
+                env:
+                - name: MYSQL_ROOT_PASSWORD_FILE
+                  value: "/opt/ibm/lsfsuite/db-pass/MYSQL_ROOT_PASSWORD"
+                readinessProbe:
+                  exec:
+                    command:
+                      - /bin/true
+                  initialDelaySeconds: 10
+                  periodSeconds: 60
+                livenessProbe:
+                  exec:
+                    command:
+                      - /bin/true
+                  initialDelaySeconds: 10
+                  periodSeconds: 60
+                volumeMounts:
+                  - name: conf-volume
+                    mountPath: "/pvc"
+                  - name: db-pass
+                    mountPath: "/opt/ibm/lsfsuite/db-pass"
+                    readOnly: true
+            restartPolicy: Always
+{% if imagepullsecret is defined and imagepullsecret != '' %}
+            imagePullSecrets:
+              - name: "{{ imagepullsecret }}"
+{% endif %}
+            volumes:
+              - name: conf-volume
+                persistentVolumeClaim:
+                  claimName: "{{ CNAME }}-pvc"
+              - name: db-pass
+                secret:
+{% if gui.db.passwordSecret is defined and gui.db.passwordSecret is not none %}
+                  secretName: "{{ gui.db.passwordSecret }}"
+{% else %}
+                  secretName: "db-pass"
+{% endif %}
+{% if cluster.userauth.authconfigargs is defined and
+cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined
+and cluster.userauth.configs is not none %}
+{% for acfg in cluster.userauth.configs %}
+              - name: "{{ acfg.name | lower | replace(' ', '-') }}"
+                secret:
+                  secretName: "{{ acfg.name }}"
+{% if acfg.permission is defined %}
+                  defaultMode: {{ acfg.permission }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if gui.mountList is defined and gui.mountList is not none %}
+{% for mount in gui.mountList %}
+              - name: "{{ mount | replace('/', '') }}"
+                hostPath:
+                  path: "{{ mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+              - name: "{{ vol.name | lower | replace(' ', '-') }}"
+                persistentVolumeClaim:
+                  claimName: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
+{% endfor %}
+{% endif %}
+
+{% else %}
+- name: No GUI Requested
+  debug:
+    msg: "Cluster has been requested with no GUI"
+{% endif %}

@@ -1,0 +1,232 @@
+---
+# defaults file for lsf
+
+# The Licenses have to be accepted by the user before it will deploy
+
+# This is the account to use for running the pods
+service_account: ibm-lsf-sa
+
+# This is the version of the package
+version: 10.1.0.13
+
+# This is the registry where the images will be fetched
+registry: docker-registry.default.svc:5000
+  
+cluster:
+  # Name of the cluster
+  clustername: "lsf"
+
+  # PersistentVolumeClaim (Storage volume) parameters
+  pvc:
+    dynamicStorage: false
+    # storageClass: ""
+    selectorLabel: "lsfvol"
+    selectorValue: "lsfvol"
+    size: "10G"
+
+  # The cluster needs to access users home directories and applications
+  # This section allows you to define the PersistentVolume to use to access them
+  #volumes:
+  #  - name: "Home"
+  #    mount: "/home"
+  #    selectorLabel: ""
+  #    selectorValue: ""
+
+master:
+  # Define where to get the image from
+  image: "{{ registry }}/{{ namespace }}/lsf-master:{{ version }}"
+  imagePullPolicy: "Always"
+
+  # The placement variables control how the pods will be placed
+  placement:
+    # includeLabel  - Optional label to apply to hosts that 
+    #                 should be allowed to run the compute pod
+    includeLabel: ""
+
+    # excludeLabel  - Is a label to apply to hosts to prevent 
+    #                 them from being used to host the compute pod
+    excludeLabel: "excludelsf"
+
+    # Taints can be used to control which nodes are available
+    # to the LSF and Kubernetes scheduler.  If used these
+    # parameters are used to allow the LSF pods to run on
+    # tainted nodes.  When not defined the K8s master nodes
+    # will be used to host the master pod.
+    # 
+    #  tolerateName  - Optional name of the taint that has been
+    #                  applied to a node
+    #  tolerateValue - The value given to the taint
+    #  tolerateEffect - The effect of the taint
+    tolerateName: ""
+    tolerateValue: ""
+    tolerateEffect: NoExecute
+
+  # Define the number of this type of pod you want to have running.
+  # Valid values for a master are 0 or 1.
+  replicas: 1
+
+  # These are the Memory and CPU allocations for the pod.
+  # Set the memory and cpu requests and limits to the same values
+  # to get a guarenteed QoS.
+  resources:
+    requests:
+      cpu: "1"
+      memory: "1G"
+    limits:
+      cpu: "1"
+      memory: "1G"
+
+  # The master pod will typically need to get access to the user data 
+  # and home directory.  The mountList provides a way to access 
+  # directories from the OS running on the Kubernetes worker nodes.
+  # This will be translated into hostPath volumeMounts for the pod.
+  # For example
+  # listing '/home' will cause /home from the worker OS to be 
+  # mounted in the running container, allowing users to access there
+  # home directory (assuming automounter is setup).   
+  #mountList:
+  #  - /home
+
+gui:
+  # Define where to get the image from
+  image: "{{ registry }}/{{ namespace }}/lsf-gui:{{ version }}"
+  imagePullPolicy: "Always"
+
+  # Database parameters
+  db:
+    image: "{{ registry }}/{{ namespace }}/mariadb:latest"
+    imagePullPolicy: "IfNotPresent"
+    cpu: 250m
+    memory: 256M
+    passwordSecret: "db-pass" 
+
+
+  # The placement variables control how the pods will be placed
+  placement:
+    # includeLabel  - Optional label to apply to hosts that
+    #                 should be allowed to run the compute pod
+    includeLabel: ""
+
+    # excludeLabel  - Is a label to apply to hosts to prevent
+    #                 them from being used to host the compute pod
+    excludeLabel: "excludelsf"
+
+    # Taints can be used to control which nodes are available
+    # to the LSF and Kubernetes scheduler.  If used these
+    # parameters are used to allow the LSF pods to run on
+    # tainted nodes.  When not defined the K8s master nodes
+    # will be used to host the master pod.
+    #
+    #  tolerateName  - Optional name of the taint that has been
+    #                  applied to a node
+    #  tolerateValue - The value given to the taint
+    #  tolerateEffect - The effect of the taint
+    tolerateName: ""
+    tolerateValue: ""
+    tolerateEffect: NoExecute
+
+  # Define the number of this type of pod you want to have running.
+  # Valid values for a master are 0 or 1.
+  replicas: 1
+
+  # These are the Memory and CPU allocations for the pod.
+  # Set the memory and cpu requests and limits to the same values
+  # to get a guarenteed QoS.
+  resources:
+    requests:
+      cpu: "2"
+      memory: "16G"
+    limits:
+      cpu: "2"
+      memory: "16G"
+
+  # The master pod will typically need to get access to the user data
+  # and home directory.  The mountList provides a way to access
+  # directories from the OS running on the Kubernetes worker nodes.
+  # This will be translated into hostPath volumeMounts for the pod.
+  # For example
+  # listing '/home' will cause /home from the worker OS to be
+  # mounted in the running container, allowing users to access there
+  # home directory (assuming automounter is setup).
+  #mountList:
+  #  - /home
+
+
+# There can be a number of different compute pods running.  Each pod
+# type supporting different applications.  Define a list of compute
+# pods and there characteristics here.
+computes:
+  # This is the start of a specific compute pod type.  The name 
+  # given should be short and without spaces 
+  - name: "RHEL7"
+
+    # A meaningful description should be given to the pod.  It should 
+    # describe what applications this pod is capable of running
+    description: "Compute pods for TensorFlow and Openfoam"
+
+    # The compute pods will provide the resources for running
+    # various workloads.  Resources listed here will be assigned
+    # to the pods in LSF
+    provider:
+      - tensorflow
+      - openfoam
+
+    # Define where to get the image from
+    image: "{{ registry }}/{{ namespace }}/lsf-comp:{{ version }}"
+    imagePullPolicy: "Always"
+
+    # Define the number of this type of pod you want to have running
+    replicas: 1
+
+    # The placement variables control how the pods will be placed
+    placement:
+      # includeLabel  - Optional label to apply to hosts that 
+      #                 should be allowed to run the compute pod
+      includeLabel: ""
+
+      # excludeLabel  - Is a label to apply to hosts to prevent 
+      #                 them from being used to host the compute pod
+      excludeLabel: "excludelsf"
+
+      # Taints can be used to control which nodes are available 
+      # to the LSF and Kubernetes scheduler.  If used these 
+      # parameters are used to allow the LSF pods to run on 
+      # tainted nodes.  When not defined the K8s master nodes 
+      # will be used to host the master pod.
+      #
+      #  tolerateName  - Optional name of the taint that has been
+      #                  applied to a node
+      #  tolerateValue - The value given to the taint
+      #  tolerateEffect - The effect of the taint
+      #
+      tolerateName: ""
+      tolerateValue: ""
+      tolerateEffect: NoExecute
+
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "1G"
+      limits:
+        cpu: "200m"
+        memory: "1G"
+      # gpu - defines if the compute pod should be created with 
+      #       support for the GPU.  Valid values are "yes|no".
+      # If set to "yes", the NVIDIA___ environment variables will be
+      # set and the nodeSelectorTerms will include the
+      # openshift.com/gpu-accelerator key with operator Exists.
+      # The seLinuxOptions will set the type to 'nvidia_container_t'
+      # and the SYS_ADMIN capability will be added for GPU mode switching
+      gpu: "yes"
+
+    # The application running in the pods will typically need to get 
+    # access to the user data and even application binaries.  The 
+    # mountList provides a way to access directories from the OS
+    # running on the Kubernetes worker nodes.  This will be translated
+    # into hostPath volumeMounts for the pod to access. For example
+    # listing '/home' will cause /home from the worker OS to be 
+    # mounted in the running container, allowing users to access there
+    # home directory (assuming automounter is setup).
+    #mountList:
+    #  - /home
+

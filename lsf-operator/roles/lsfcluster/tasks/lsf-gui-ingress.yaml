@@ -1,0 +1,63 @@
+---
+# Create access to the cluster.  Try a route first
+#
+
+- name: Create route check variable
+  set_fact:
+    haveroutes: "{{ 'true' if ( 'route.openshift.io' in api_groups ) else 'false' }}"
+
+- name: Are Routes available
+  debug:
+    msg: "It appears routes are available"
+  when: haveroutes
+
+- name: Should we setup an ingress
+  debug:
+    msg: "Yes it appears routes are not available"
+  when: not haveroutes
+
+- name: Create a route to the GUI
+  k8s:
+    state: present
+    definition:
+      apiVersion: route.openshift.io/v1
+      kind: Route
+      metadata:
+        name: "{{ CNAME }}-route"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+      spec:
+        to:
+          kind: Service
+          weight: 100
+          name: "{{ CNAME }}-service"
+        wildcardPolicy: None
+  when: haveroutes
+
+
+- name: Create access to the GUI
+  k8s:
+    state: present
+    definition:
+      apiVersion: extensions/v1beta1
+      kind: Ingress
+      metadata:
+        name: "{{ CNAME }}-ingress"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+        annotations:
+          lsf-gui/port: "8080"
+      spec:
+        backend:
+          serviceName: "{{ CNAME }}-service"
+          servicePort: 8080  
+  when: not haveroutes
+

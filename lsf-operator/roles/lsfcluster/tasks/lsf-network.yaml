@@ -1,0 +1,30 @@
+---
+# tasks file for lsf
+- name: Create the network policy
+  k8s:
+    state: absent
+    definition:
+      apiVersion: networking.k8s.io/v1
+      kind: NetworkPolicy
+      metadata:
+        name: "{{ CNAME }}-np"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+      spec:
+        podSelector:
+          matchLabels:
+            lsfcluster: "{{ CNAME }}"
+        policyTypes:
+          - Ingress
+        ingress:
+          - from:
+              - namespaceSelector:
+                  matchLabels:
+                    namespace: kube-system
+              - podSelector:
+                  matchLabels:
+                    lsfcluster: "{{ CNAME }}"

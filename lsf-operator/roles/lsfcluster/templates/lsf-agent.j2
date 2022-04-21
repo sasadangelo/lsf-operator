@@ -1,0 +1,236 @@
+---
+# This is the template from which we generate the dynamic yaml
+{% set loopcnt = 0 %}
+{% for comp in computes %}
+{% set myName = comp.name %}
+
+#
+- name: Generating LSF Compute Pod {{ myName |replace(' ', '-') }}
+  debug:
+{% if comp.provider is defined and comp.provider is not none %}
+    msg: "Provides:  {{ comp.provider | default('') | join(' ') }}"
+{% else %}
+    msg: "Provides: Nothing!"
+{% endif %}
+
+- name: Deploy LSF Compute Pod {{ myName |replace(' ', '-') }}
+  k8s:
+    definition:
+      kind: Deployment
+      metadata:
+        name: "{{ CNAME }}-{{ myName |lower |replace(' ', '-') }}"
+        namespace: "{{ namespace }}"
+        generateName: "lsf-{{ myName |replace(' ', '-') |lower |replace('.', '-') }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          lsftype: "ibm-spectrum-lsf"
+          release: "lsf"
+          lsfcluster: "{{ CNAME }}"
+          role: agent
+{% if comp.resources.gpu is defined and comp.resources.gpu == 'yes' %}
+          gpu: "true"
+{% else %}
+          gpu: "false"
+{% endif %}
+        annotations:
+          description: "{{ comp.description }}"
+      spec:
+        replicas: {{ comp.replicas }}
+        selector:
+          matchLabels:
+            app.kubernetes.io/name: "ibm-spectrum-lsf"
+            app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+            app.kubernetes.io/instance: "lsf"
+            release: "lsf"
+            role: agent
+            lsfcluster: "{{ CNAME }}"
+            lsftype: "ibm-spectrum-lsf"
+{% if comp.resources.gpu is defined and comp.resources.gpu == 'yes' %}
+            gpu: "true"
+{% else %}
+            gpu: "false"
+{% endif %}
+        template:
+          metadata:
+            labels:
+              app.kubernetes.io/name: "ibm-spectrum-lsf"
+              app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+              app.kubernetes.io/instance: "lsf"
+              release: "lsf"
+              role: agent
+              lsftype: "ibm-spectrum-lsf"
+              lsfcluster: "{{ CNAME }}"
+{% if comp.resources.gpu is defined and comp.resources.gpu == 'yes' %}
+              gpu: "true"
+{% else %}
+              gpu: "false"
+{% endif %}
+            annotations:
+              productID: IBM Spectrum LSF---9999K99
+              productName: IBM Spectrum LSF Community Edition
+              productVersion: 10.1.0.9
+{% if comp.provider is defined and comp.provider is not none %}
+              providesResource: "{{ comp.provider |default('') | join(' ') }}"
+{% endif %}
+
+          spec:
+            serviceAccountName: "{{ CNAME }}-agent-sa"
+            hostIPC: false
+            hostNetwork: false
+            hostPID: false
+            securityContext:
+              runAsNonRoot: false
+            dnsPolicy: ClusterFirst
+            subdomain: default-subdomain
+            affinity:
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                  - matchExpressions:
+                    - key: kubernetes.io/arch
+                      operator: In
+                      values:
+                      - amd64
+                      - ppc64le
+                    - key: openshift.com/gpu-accelerator
+{% if comp.resources.gpu is defined and comp.resources.gpu == 'yes' %}
+                      operator: "Exists"
+{% else %}
+                      operator: "DoesNotExist"
+{% endif %}
+{% if comp.placement.include_label is defined and comp.placement.include_label != '' %}
+                    - key: "{{ comp.placement.include_label }}"
+                      operator: "Exists"
+{% endif %}
+{% if comp.placement.exclude_label is defined and comp.placement.exclude_label != '' %}
+                    - key: "{{ comp.placement.exclude_label }}"
+                      operator: "DoesNotExist"
+{% endif %}
+            containers:
+            - name: ibm-spectrum-lsf
+              image: "{{ comp.image }}"
+              imagePullPolicy: "{{ comp.image_pull_policy |default('Always') }}"
+              securityContext:
+                allowPrivilegeEscalation: true
+                capabilities:
+                  add:
+                  - KILL
+                  - SETUID
+                  - SETGID
+                  - CHOWN
+                  - SETPCAP
+                  - NET_BIND_SERVICE
+                  - DAC_OVERRIDE
+                  - SYS_TTY_CONFIG
+{% if comp.resources.gpu is defined and comp.resources.gpu == 'yes' %}
+                  - SYS_ADMIN
+{% endif %}
+                  drop:
+                  - ALL
+                privileged: false
+                readOnlyRootFilesystem: false
+              args: [ "agent", "yes", "{{ POD_PREFIX }}", "lsf" ]
+              env:
+                - name: CLUSTERNAME
+                  value: "{{ cluster.clustername | default('lsf') }}"
+                - name: NETWORKING
+                  value: "{{ networking | default('k8s') }}"
+{% if comp.resources.gpu is defined and comp.resources.gpu == 'yes' %}
+                - name: NVIDIA_VISIBLE_DEVICES
+                  value: all
+                - name: NVIDIA_DRIVER_CAPABILITES
+                  value: compute,utility
+{% endif %}
+{% if comp.provider is defined and comp.provider is not none %}
+                - name: PROVIDESRESOURCE
+                  value: "{{ comp.provider | join(' ') }}"
+{% endif %}
+{% if cluster.userauth.authconfigargs is defined and cluster.userauth.authconfigargs != '' %}
+                - name: "AUTHCFGARGS"
+                  value: "{{ cluster.userauth.authconfigargs }}"
+{% if cluster.userauth.starts is defined and cluster.userauth.starts is not none %}
+                - name: "AUTHDAEMONS"
+                  value: "{{ cluster.userauth.starts | join(' ') }}"
+{% endif %}
+{% endif %}
+              resources:
+                requests:
+                  cpu: "{{ comp.resources.requests.cpu }}"
+                  memory: "{{ comp.resources.requests.memory }}"
+                limits:
+                  cpu: "{{ comp.resources.limits.cpu }}"
+                  memory: "{{ comp.resources.limits.memory }}"
+              readinessProbe:
+                exec:
+                  command:
+                    - ls
+                    - /tmp/lsf-ready
+                initialDelaySeconds: 60
+                periodSeconds: 60
+              livenessProbe:
+                exec:
+                  command:
+                    - ls
+                    - /tmp/lsf-alive
+                initialDelaySeconds: 60
+                periodSeconds: 60
+              volumeMounts:
+                - name: sbatchd-volume
+                  mountPath: "/tmp/.myCluster.sbd"
+{% if comp.mount_list is defined and comp.mount_list is not none %}
+{% for mount in comp.mount_list %}
+                - name: "{{ mount | replace('/', '') }}"
+                  mountPath: "{{ mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+                - name: "{{ vol.name | lower | replace(' ', '-') }}"
+                  mountPath: "{{ vol.mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.userauth.authconfigargs is defined and cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined and cluster.userauth.configs is not none %}
+{% for acfg in cluster.userauth.configs %}
+                - name: "{{ acfg.name | lower | replace(' ', '-') }}"
+                  mountPath: "/.config/{{ acfg.filename }}"
+                  readOnly: true
+{% endfor %}
+{% endif %}
+            volumes:
+              - name: sbatchd-volume
+                emptyDir: {}
+
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+              - name: "{{ vol.name | lower | replace(' ', '-') }}"
+                persistentVolumeClaim:
+                  claimName: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
+{% endfor %}
+{% endif %}
+{% if comp.mount_list is defined and comp.mount_list is not none %}
+{% for mount in comp.mount_list %}
+              - name: "{{ mount | replace('/', '') }}"
+                hostPath:
+                  path: "{{ mount }}"
+{% endfor %}
+{% endif %}
+{% if cluster.userauth.authconfigargs is defined and cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined and cluster.userauth.configs is not none %}
+{% for acfg in cluster.userauth.configs %}
+              - name: "{{ acfg.name | lower | replace(' ', '-') }}"
+                secret:
+                  secretName: "{{ acfg.name }}"
+{% if acfg.permission is defined %}
+                  defaultMode: {{ acfg.permission }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if imagepullsecret is defined and imagepullsecret != '' %}
+            imagePullSecrets:
+              - name: "{{ imagepullsecret }}"
+{% endif %}
+            restartPolicy: Always
+{% set loopcnt = loopcnt + 1 %}
+{% endfor %}

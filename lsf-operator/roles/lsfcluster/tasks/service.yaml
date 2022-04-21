@@ -1,0 +1,32 @@
+---
+# tasks file for lsf
+- name: Create a service
+  k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: "{{CNAME}}-monitoring-service"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+        annotations:
+          prometheus.io/port: "10501"
+          prometheus.io/scrape: "true"
+      spec:
+        selector:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+          role: master
+        ports:
+        - protocol: TCP
+          port: 10501
+          targetPort: 10501
+
+

@@ -1,0 +1,75 @@
+#############################################################################
+# Licensed Materials - Property of IBM.
+# Copyright IBM Corporation 2019. All Rights Reserved.
+# U.S. Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#
+# Contributors:
+#  IBM Corporation - initial API and implementation
+###############################################################################
+#
+---
+
+# Make a LSF Cluster
+
+# Create the Service Account
+- include: lsf-sa-setup.yaml
+
+# Create the network policy
+- include: lsf-network.yaml
+
+# Create the PVC
+- name: Generate the storage.yaml
+  template:
+    src: ../templates/storage.j2
+    dest: "{{ YAML_TEMP }}/{{ CNAME }}-storage.yaml"
+  when: master.replicas != 0
+
+- include: "{{ YAML_TEMP }}/{{ CNAME }}-storage.yaml"
+  static: no
+  when: master.replicas != 0
+
+- include: service.yaml
+  when: master.replicas != 0
+
+#- name: Dump variables for debugging
+#  template:
+#    src: ../templates/dumpall.j2
+#    dest: /tmp/dumpall.log2
+
+- name: Generate the lsf-agent.yaml
+  template:
+    src: ../templates/lsf-agent.j2
+    dest: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-agent.yaml"
+
+- name: Generate the list of providers
+  set_fact:
+    allproviders: "{% set comp_resources = '' %}{% for comp in computes %}{% if comp.provider is defined and comp.provider is not none %}{{ comp.provider|join(' ') }} {% endif %}{% endfor %}"
+
+- name: Generate the lsf-deployment.yaml
+  template:
+    src: ../templates/lsf-deployment.j2
+    dest: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-deployment.yaml"
+
+#- name: Dump variables for debugging
+#  template:
+#    src: ../templates/dumpall.j2
+#    dest: /tmp/dumpall.log
+
+- name: Generate the lsf-gui.yaml
+  template:
+    src: ../templates/lsf-gui.j2
+    dest: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-gui.yaml"
+
+# Create the Pod Scheduler daemonsets
+- include: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-agent.yaml"
+  static: no
+
+- include: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-deployment.yaml"
+  static: no
+
+- include: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-gui.yaml"
+  static: no
+
+- include: lsf-gui-service.yaml
+- include: lsf-gui-ingress.yaml

@@ -1,0 +1,73 @@
+#--------------------------------------------------------
+# Copyright IBM Corp. 1992, 2017. All rights reserved.
+# US Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#--------------------------------------------------------
+#
+# Use this Dockerfile to build compute images for other OS's.  Edit the 
+# file and add the packages needed to run your jobs and to run the 
+# user authentication services inside the pod.
+#
+# The LSF files will come from the default CentOS 7 LSF compute image.
+# That image must be built first before this image can be created. 
+FROM localhost/lsf-comp-amd64:10.1.0.13 AS lsf
+
+# Provide the OS base image you want to add LSF to.  Create your own
+# base image, or use one from a trusted registry.
+FROM ubuntu:latest
+
+LABEL name="lsf-comp-myos1-@NARCH@" \
+      vendor="You" \
+      version="@VERSION@" \
+      release="1" \
+      summary="IBM Spectrum LSF Compute Image for other OS" \
+      description="This image contains the OS and IBM Spectrum LSF for running jobs."
+
+# Copy over the LSF files to the new OS image
+COPY --from=lsf /opt/ibm /opt/ibm
+COPY --from=lsf /start_lsf.sh /start_lsf.sh
+
+# The LSF installation will require a lsfadmin user with UID 495.  You may
+# also want a lsfuser if you do not plan on LDAP/NIS/etc..
+# Modify this command to suite your OS.
+RUN useradd -s /bin/bash -c "LSF Administrator" -r -d /lsfadmin -u 495 -m lsfadmin \
+    && useradd -s /bin/bash -c "LSF User" -d /lsfuser -m lsfuser \
+    && chmod 755 /start_lsf.sh \
+    && chown -R lsfadmin /opt/ibm/lsfsuite/lsf \
+    && chgrp -R lsfadmin /opt/ibm/lsfsuite/lsf
+
+
+# LSF and the startup script require some OS packages.  You will need to replace 
+# these commands with the packages and OS commands appropriate for your OS.
+RUN yum -y install hostname wget gettext net-tools which iproute iputils openldap openldap-clients systemd-sysv make --setopt=tsflags=nodocs
+
+
+# The start_lsf script needs the jq command.  Perform the steps needed to install 
+# that package for your OS.
+RUN yum -y install jq
+
+
+# To use LDAP or other user authentication services you will need to install the
+# OS packages need for that.  What to install will depend on the OS and authentication
+# service used.  Use the appropriate OS commands to install the needed services.
+# below is an example for CentOS and LDAP.  If you need to setup any configuration
+# files for authentication it is best to do it here as well.
+RUN && yum -y install openldap openldap-clients nss-pam-ldapd authconfig ypbind --setopt=tsflags=nodocs
+
+
+# The jobs you run in LSF may get there data and binaries from NFS, however those
+# jobs my require OS packages.  Install those OS packages here.
+yum install -y Some_package
+
+
+# The image should be cleaned of any extra files.  Use the OS commands to 
+# remove any unneeded files. 
+RUN yum clean all \
+    && rm -rf /var/cache/yum \ 
+    && if [ -e /usr/sbin/ldconfig ]; then /usr/sbin/ldconfig ; fi \
+    && echo "Compute Image ready"
+
+
+# EXPOSE 80 7869/udp 7869 6878 6080 6881 6882 22 8080 8443
+
+ENTRYPOINT ["/start_lsf.sh"]

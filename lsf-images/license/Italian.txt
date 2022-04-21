@@ -1,0 +1,642 @@
+Accordo Internazionale di Licenza di Programmi
+
+Parte 1 - Condizioni Generali
+
+SCARICANDO, INSTALLANDO, COPIANDO, ACCEDENDO, FACENDO CLIC SUL PULSANTE "ACCETTO", O UTILIZZANDO IL PROGRAMMA, IL LICENZIATARIO ACCETTA LE CLAUSOLE DEL PRESENTE ACCORDO. SE SI ACCETTANO TALI CLAUSOLE PER CONTO DEL LICENZIATARIO, SI DICHIARA E GARANTISCE DI AVERE PIENA AUTORITA' DI VINCOLARE IL LICENZIATARIO ALLE PRESENTI CLAUSOLE. SE NON SI ACCETTANO LE PRESENTI DISPOSIZIONI,
+
+* NON SCARICARE, INSTALLARE, COPIARE, ACCEDERE, FARE CLIC SUL PULSANTE "ACCETTO", O UTILIZZARE IL PROGRAMMA; E
+
+* RESTITUIRE IMMEDIATAMENTE I SUPPORTI NON UTILIZZATI, LA DOCUMENTAZIONE, E LA PROVA DI TITOLARITA' ALLA PARTE DA CUI E' STATA OTTENUTA PER UN RIMBORSO DEL CORRISPETTIVO PAGATO. SE IL PROGRAMMA E' STATO SCARICATO, DISTRUGGERE TUTTE LE COPIE DEL PROGRAMMA.
+
+1. Definizioni
+
+"Uso Autorizzato" - il livello specificato per il quale il Licenziatario è autorizzato ad eseguire o far funzionare il Programma. Quel livello può essere misurato per numero di utenti, MSU (millions of service units), Processor Value Unit ("PVU"), o un altro livello di utilizzo specificato da IBM.
+
+"IBM" - International Business Machines Corporation o una delle sue consociate.
+
+"Informazioni relative alla licenza" ("LI") - un documento che fornisce informazioni e qualsiasi clausola aggiuntiva specifica ad un Programma. La LI del Programma è disponibile presso il sito www.ibm.com/software/sla. E' possibile trovare la LI anche nella directory del Programma, utilizzando un comando di sistema, o nel libretto incluso con il Programma.
+
+"Programma" - sia il programma originale che tutte le copie integrali o parziali di esso: 1) istruzioni in formato leggibile dalla macchina e dati, 2) componenti, file e moduli, 3) contenuto audiovisivo (quale immagini, testo, registrazioni o figure), e 4) materiali su licenza associati (come chiavi e documentazioni).
+
+"Prova di titolarità" ("PoE") - prova dell'autorizzazione all'utilizzo di un Programma da parte del Licenziatario. La PoE rappresenta anche titolo del Licenziatario per beneficiare della garanzia, dei corrispettivi per futuri aggiornamenti, se esistenti, e di eventuali offerte speciali o promozionali. In caso IBM non fornisca una PoE al Licenziatario, allora IBM può accettare come PoE la ricevuta originale dei pagamenti effettuati o di altre registrazioni di vendita effettuate dal soggetto (IBM o suo rivenditore) da cui il Licenziatario ha acquisito il Programma, a condizione che sia specificato il nome del Programma ed il livello di utilizzo acquisito.
+
+"Periodo di garanzia" - un anno, a partire dalla data in cui è stata concessa la licenza al Licenziatario originale.
+
+2. Struttura dell'Accordo
+
+Questo accordo è suddiviso in Parte 1 - Condizioni Generali, Parte 2 - Condizioni applicabili ai singoli Paesi (se esistenti), la LI, e la PoE e costituisce l'accordo integrale tra il Licenziatario e IBM relativamente all'uso del Programma. Sostituisce qualsiasi altra precedente comunicazione verbale o scritta intercorsa tra il Licenziatario ed IBM relativa all'uso del Programma da parte del Licenziatario. Le condizioni incluse nella Parte 2 possono sostituire o modificare quelle contenute nella Parte 1. In caso di conflitto, la LI prevarrà su entrambe le Parti.
+
+3. Concessione della Licenza
+
+Il Programma è di proprietà di IBM o di un fornitore IBM, ed è tutelato dalle leggi sul diritto di autore, viene concesso in licenza, ma non viene venduto.
+
+IBM concede al Licenziatario una licenza non esclusiva per 1) utilizzare il Programma fino al livello di utilizzo specificato nella PoE, 2) effettuare ed installare copie per supportare tale utilizzo e 3) effettuare una copia di backup, tutto a condizione che
+
+a. il Licenziatario abbia legalmente ottenuto il Programma e soddisfi le clausole di questo Accordo;
+
+b. la copia di backup non funzioni a meno che il Programma di cui è eseguito il backup non possa funzionare;
+
+c. Il Licenziatario riproduca su ciascuna copia, anche parziale, del Programma le indicazioni relative al diritto d'autore e ogni altra indicazione relativa a diritti di proprietà;
+
+d. il Licenziatario si assicuri che chiunque utilizzi il Programma (con accesso locale o remoto) 1) rispetti l'uso autorizzato e 2) rispetti le clausole di questo Accordo;
+
+e. Il Licenziatario non 1) utilizzi, copi o distribuisca il Programma fatto salvo quanto previsto nel presente Accordo; 2) assembli a ritroso, compili a ritroso, o in altro modo traduca o esegua il reverse engineering del Programma, salvo laddove espressamente consentito dalle norme inderogabili di legge, senza possibilità di deroga contrattuale,; 3) utilizzi alcuna delle componenti del Programma, dei file, dei moduli, del contenuto audio-visivo, o di materiale correlato concesso in licenza separatamente dal Programma; o 4) sublicenzi, conceda in noleggio o locazione il Programma; e
+
+f. se il Licenziatario ottiene questo Programma come Programma di supporto, utilizzi questo Programma solo per supportare il Programma Principale e sia soggetto a qualsiasi limitazione nella licenza per il Programma Principale, o, se il Licenziatario ottiene questo Programma come Programma Principale, utilizzi tutti i Programmi di Supporto solo per supportare questo Programma, e sia soggetto a tutte le limitazioni in questo Accordo. Ai fini di questo punto "f," per "Programma di Supporto" si intende un Programma che è parte di un altro Programma IBM ("Programma Principale") e identificato come Programma di Supporto nella LI del Programma Principale. (Per ottenere una licenza a parte ad un Programma di Supporto senza tali limitazioni, il Licenziatario dovrà contattare la parte da cui ha ottenuto il Programma di Supporto.)
+
+Questa licenza si applica ad ogni copia del Programma effettuata dal Licenziatario.
+
+3.1 Trade-up, Aggiornamenti, Correzione (Fix) e Patch
+
+3.1.1 Trade-up
+
+Se il Programma è sostituito da un Programma di trade-up, la licenza del Programma sostituito terminerà immediatamente.
+
+3.1.2 Aggiornamenti, Correzione (Fix) e Patch
+
+Quando il Licenziatario riceve un aggiornamento, correzione, o patch ad un Programma, accetta qualsiasi clausola aggiuntiva o differente applicabile a tale aggiornamento, correzione o patch specificata nella sua LI. Se non sono fornite clausole aggiuntive o differenti, allora gli aggiornamenti, correzioni o patch sono soggetti solo a questo Accordo. Se il Programma è sostituito da un aggiornamento, il Licenziatario accetta di sospendere subito l'uso del Programma sostituito.
+
+3.2 Licenze con durata fissa
+
+Se IBM concede in licenza il Programma per una durata fissa, la licenza del Licenziatario cesserà alla fine della durata fissa, a meno che il Licenziatario e IBM non accettino di rinnovarla.
+
+3.3 Termine e Revoca
+
+Questo Accordo resterà in vigore fino alla revoca.
+
+IBM potrà revocare la licenza del Licenziatario qualora questi non rispetti le clausole del presente Accordo.
+
+In caso di revoca della licenza da entrambe le parti, per qualsiasi motivo, il Licenziatario accetta di sospendere subito l'uso e distruggere tutte le copie del Programma effettuate. Qualsiasi clausola del presente Accordo che per sua natura si estende oltre la cessazione dell'Accordo, resterà in vigore fino al suo adempimento e si applicherà ai rispettivi successori e agli assegnatari delle parti.
+
+4. Canoni
+
+I canoni si basano sull'Uso Autorizzato ottenuto, specificato nella PoE. IBM non rilascia crediti o rimborsi per somme già dovute o pagate, salvo se diversamente specificato in questo Accordo.
+
+Se il Licenziatario desidera aumentare il proprio Uso Autorizzato, dovrà comunicarlo in anticipo ad IBM o ad un rivenditore autorizzato IBM e pagare tutti i corrispettivi applicabili.
+
+5. Tasse
+
+Qualora qualsiasi autorità imponga sul Programma una tassa, un'imposta, un dazio, o un canone, con l'esclusione di quelli basati sul reddito imponibile di IBM, allora il Licenziatario accetta di pagare l'ammontare o si dovrà fornire documentazione dell'esenzione eventualmente spettante. Il Licenziatario è responsabile di qualsiasi tassa relativa alla proprietà personale sul Programma dalla data del suo acquisto. Qualora un'autorità imponga un dazio doganale, una tassa, un'imposta o un canone per l'importazione, l'esportazione, il trasferimento, l'accesso o l'utilizzo del Programma al di fuori del paese in cui il Licenziatario originario ha ottenuto la licenza, allora il Licenziatario accetta di essere responsabile per qualsiasi somma imposta e di pagarla.
+
+6. Garanzia di rimborso
+
+Qualora il Licenziatario non sia soddisfatto del Programma per qualsiasi ragione e sia anche il Licenziatario originale, potrà ottenere un rimborso del corrispettivo pagato per il Programma, a condizione che il Licenziatario restituisca il Programma e la sua PoE alla parte da cui lo ha acquistato entro 30 giorni dalla data in cui la PoE è stata inviata al Licenziatario. Se la licenza è concessa per una durata fissa soggetta a rinnovo, allora il Licenziatario potrà ottenere un rimborso solo se il Programma e la sua PoE saranno restituiti entro 30 giorni dalla data iniziale. Se il Licenziatario ha scaricato il Programma, dovrà contattare la parte da cui lo ha ottenuto per istruzioni su come ottenere il rimborso.
+
+7. Trasferimento del Programma
+
+Il Licenziatario può trasferire il Programma e tutti i suoi obblighi e diritti di licenza a terze parti solo se tale parte accetta le clausole del presente Accordo. In caso di revoca della licenza da entrambe le parti, per qualsiasi motivo, il Licenziatario non potrà trasferire il Programma ad un'altra parte. Il Licenziatario non può trasferire una parte 1) del Programma o 2) dell'Uso Autorizzato del Programma. Con il trasferimento del Programma, il Licenziatario dovrà anche trasferire una copia cartacea del presente Accordo, incluse LI e PoE. Subito dopo il trasferimento, l'autorizzazione ad utilizzare il programma è revocata.
+
+8. Garanzia ed Esclusioni
+
+8.1 Limitazione della garanzia
+
+IBM garantisce che il Programma, quando utilizzato nel suo ambiente operativo, sarà conforme alle sue specifiche. Le informazioni sulle Specifiche del Programma e sull'ambiente operativo specificato sono contenute nella documentazione che accompagna il Programma (come un file read-me) o in altre informazioni pubblicate da IBM (come una lettera d'annuncio). Il licenziatario accetta che tale documentazione e altro contenuto del Programma possano essere forniti solo in lingua Inglese, salvo laddove diversamente richiesto dalla normativa locale escludendo la possibilità di rinuncia o limitazione contrattuale.
+
+La garanzia si applica solo alla parte non modificata del Programma. IBM non garantisce il funzionamento ininterrotto o privo di errori del Programma né che IBM correggerà tutti i difetti del Programma. Il licenziatario è responsabile dei risultati derivanti dall'uso del Programma.
+
+Durante il Periodo di Garanzia, IBM offre al Licenziatario l'accesso ai database IBM che contengono informazioni sui difetti conosciuti del Programma, correzioni dei difetti, limitazioni d'uso e procedure di esclusione (bypass) senza alcun onere aggiuntivo. Per ulteriori informazioni consultare il Manuale IBM di Supporto Software reperibile presso il sito web www.ibm.com/software/support.
+
+Se un Programma non funziona come garantito durante il Periodo di garanzia ed il problema non può essere risolto tramite le informazioni disponibili nei database IBM, il Licenziatario potrà restituire il Programma e la sua PoE al soggetto (IBM o suo rivenditore) da cui è stato acquisito e ricevere il rimborso del corrispettivo pagato. Dopo aver restituito il Programma, l'autorizzazione ad utilizzare il Programma è revocata. Se il Licenziatario ha scaricato il Programma, dovrà contattare la parte da cui lo ha ottenuto per istruzioni su come ottenere il rimborso.
+
+8.2 Esclusioni
+
+TALI GARANZIE COSTITUISCONO LE GARANZIE ESCLUSIVE DEL LICENZIATARIO E SOSTITUISCONO TUTTE LE ALTRE GARANZIE O CONDIZIONI, ESPRESSE O IMPLICITE, IVI INCLUSE, MA NON LIMITATE A, GARANZIE O CONDIZIONI IMPLICITE DI COMMERCIABILITA', DI QUALITA', IDONEITA' PER UNO SCOPO PARTICOLARE, TITOLARITA', E NON VIOLAZIONE. POICHÉ LA LEGISLAZIONE DI ALCUNI PAESI NON CONSENTE L'ESCLUSIONE DELLE GARANZIE ESPRESSE O IMPLICITE, LA SUDDETTA ESCLUSIONE POTREBBE NON ESSERE APPLICABILE. IN TAL CASO, TALI GARANZIE SARANNO LIMITATE ALLA DURATA DEL PERIODO DI GARANZIA. NESSUNA GARANZIA E' APPLICABILE DOPO TALE PERIODO. POICHÉ LA LEGISLAZIONE DI ALCUNI PAESI NON CONSENTE LIMITAZIONI BASATE SULLA DURATA DI UNA GARANZIA IMPLICITA, LA SUDDETTA LIMITAZIONE POTREBBE NON ESSERE APPLICABILE.
+
+TALI GARANZIE DANNO DIRITTI LEGALI SPECIFICI AL LICENZIATARIO. IL LICENZIATARIO PUO' ANCHE OTTENERE ULTERIORI DIRITTI DERIVANTI DALLA LEGISLAZIONE SPECIFICA DI CIASCUN PAESE.
+
+LE GARANZIE IN QUESTA SEZIONE 8 (GARANZIE ED ESCLUSIONI) SONO FORNITE SOLO DA IBM. TUTTAVIA, ANCHE LE RINUNCE IN QUESTA SOTTO-SEZIONE 8.2 (ESCLUSIONI), SONO APPLICABILI AI FORNITORI DI IBM DI CODICE DI TERZE PARTI. QUESTI FORNITORI FORNISCONO TALE CODICE SENZA GARANZIE O CONDIZIONI DI ALCUN TIPO. QUESTO PARAGRAFO NON ANNULLA GLI OBBLIGHI DI GARANZIA DI IBM IN BASE AL PRESENTE ACCORDO.
+
+9. Dati e Database del Licenziatario
+
+Per assistere il Licenziatario nell'isolare la causa di un problema con il Programma, IBM può richiedere che il Licenziatario 1) consenta ad IBM di accedere in remoto al sistema del Licenziatario o 2) invii le informazioni del Licenziatario o i dati del sistema a IBM. Tuttavia, IBM non è obbligata a fornire tale assistenza a meno che IBM ed il Licenziatario non abbiano stipulato un accordo scritto a parte in base al quale IBM accetta di fornire al Licenziatario quel tipo di supporto che va oltre gli obblighi di garanzia di IBM in questo Accordo. In ogni caso, IBM utilizzerà le informazioni sugli errori e i problemi per migliorare i suoi prodotti e servizi ed assistere il Licenziatario con la fornitura di offerte di supporto correlate. A tali scopi, IBM può utilizzare enti o subappaltatori di IBM (anche in uno o più paesi diversi da quello in cui ha sede il Licenziatario), ed il Licenziatario autorizza IBM a procedere in tal senso.
+
+Il Licenziatario resta responsabile per 1) i dati ed il contenuto di qualsiasi database che il Licenziatario rende disponibile ad IBM, 2) la scelta e l'implementazione di procedure e controlli relativi all'accesso, alla sicurezza, alla crittografia, all'uso e alla trasmissione di dati (inclusi dati personali), e 3) il backup e il recupero di database e dati memorizzati. Il Licenziatario non invierà o fornirà ad IBM accesso ad informazioni personali, sotto forma di dati o in altri formati, e sarà responsabile dei costi ragionevoli e di qualsiasi altra somma che IBM si trovi ad affrontare relativa alle informazioni erroneamente fornite ad IBM o alla perdita o divulgazione di tali informazioni da parte di IBM, incluse quelle derivanti da pretese di risarcimento di terze parti.
+
+10. Limitazione di Responsabilità
+
+Le limitazioni ed esclusioni in questa Sezione 10 (Limitazione di Responsabilità) si applicano nei limiti in cui non sono vietate dalla legislazione applicabile senza possibilità di deroga contrattuale.
+
+10.1 Articoli per cui IBM può essere responsabile
+
+Possono verificarsi circostanze in cui, per fatto imputabile ad IBM o per responsabilità di terzi, il Licenziatario abbia il diritto ad un risarcimento da parte di IBM. In questi casi, indipendentemente da ciò che dà titolo all'utilizzatore a richiedere il risarcimento danni ad IBM, (incluso colpa grave, negligenza, erronee dichiarazioni o altri fatti di natura contrattuale o extracontrattuale), la responsabilità di IBM è limitata 1) ai danni fisici alla persona (incluso il decesso), danni alla proprietà immobiliare e personale e 2) nel caso di ogni altro danno diretto fino al corrispettivo pagato per il Programma oggetto del reclamo.
+
+Questo limite si applica anche a qualsiasi sviluppatore e fornitore dei Programmi IBM. Ciò rappresenta il massimo per cui IBM e i suoi sviluppatori e fornitori del Programma sono collettivamente responsabili.
+
+10.2 Articoli per cui IBM non è responsabile
+
+IN NESSUN CASO IBM, GLI SVILUPPATORI DEL PROGRAMMA O I FORNITORI SARANNO RESPONSABILI PER QUANTO SEGUE, ANCHE SE INFORMATI DELLA POSSIBILITÀ DEL LORO VERIFICARSI:
+
+a. PERDITA O DANNEGGIAMENTO DI DATI;
+
+b. DANNI SPECIALI, INCIDENTALI, ESEMPLARI, O INDIRETTI, O QUALSIASI ALTRO DANNO ECONOMICO CONSEGUENTE; O
+
+c. MANCATI GUADAGNI, PERDITA DI OPPORTUNITÀ COMMERCIALE, DI REDDITO, DI BENEFICI, O MANCATI RISPARMI.
+
+11. Verifica della conformità
+
+Ai fini di questa Sezione 11 (Verifica della Conformità), per "Clausole del Programma IPLA" si intende 1) questo Accordo e gli emendamenti applicabili e i documenti della transazione forniti da IBM, e 2) le politiche software IBM che si possono trovare sul sito web IBM Software Policy (www.ibm.com/softwarepolicies), incluse ad esempio quelle politiche relative al backup, alla determinazione dei prezzi per sub-capacity, e alla migrazione.
+
+I diritti e gli obblighi stabiliti in questa Sezione 11 resteranno in vigore per il periodo in cui il Programma è concesso in licenza al Licenziatario e per i due anni successivi.
+
+11.1 Processo di Verifica
+
+Il licenziatario accetta di creare, conservare e fornire ad IBM e ai suoi revisori accurate registrazioni scritte, esito delle analisi svolte mediante strumenti di sistema e altre informazioni relative al sistema sufficienti a fornire una verifica che dimostri che l'uso del Licenziatario di tutti i Programmi è conforme alle Clausole del Programma IPLA, incluse, ad esempio, tutte le clausole delle licenze applicabili ad IBM e le clausole di qualifica dell'assegnazione dei prezzi. Il Licenziatario è responsabile 1) di garantire che non supererà il suo Uso Autorizzato, e 2) di restare conforme alle Clausole del Programma IPLA.
+
+Con ragionevole preavviso, IBM può verificare la conformità con le Clausole del Programma IPLA del Licenziatario presso tutte le sedi e per tutti gli ambienti in cui il Licenziatario utilizza (per qualsiasi scopo) i Programmi in base alle Clausole del Programma IPLA. Tale verifica sarà condotta in modo da arrecare il minor disturbo possibile al Licenziatario, e potrà essere condotta presso la sede del Licenziatario, durante il normale orario lavorativo. IBM può utilizzare un revisore esterno in tale verifica, a condizione che IBM abbia sottoscritto con tale revisore un accordo di riservatezza ancora in vigore.
+
+11.2 Risoluzione
+
+Qualora IBM dovesse riscontrare che il Licenziatario ha utilizzato il Programma oltre il suo Uso Autorizzato o in modo non conforme alle Clausole del Programma IPLA, lo comunicherà al Licenziatario per iscritto. Il Licenziatario accetta di pagare subito direttamente ad IBM il corrispettivo specificato da IBM in una fattura per 1) qualsiasi uso superiore, 2) il supporto di tale uso per un periodo minore alla durata di tale uso in eccesso o per due anni, e 3) qualsiasi corrispettivo aggiuntivo e altra responsabilità determinata a seguito di tale verifica.
+
+12. Avvisi di Terze Parti
+
+Il Programma può includere codice di terze parti che IBM, non la terza parte, concede in licenza al Licenziatario in base al presente Accordo. Gli avvisi per il codice di terze parti, se esistenti, ("Avvisi di Terze Parti") sono inclusi solo per informazioni del Licenziatario. E' possibile trovare tali avvisi nei file NOTICES del Programma. Le informazioni su come ottenere il codice sorgente per determinato codice di terze parti si possono trovare negli Avvisi delle Terze Parti. Se negli Avvisi delle Terze Parti IBM dovesse identificare codice di terze parti come "Codice di Terze Parti Modificabile", IBM autorizza il Licenziatario a 1) modificare il Codice di Terze Parti Modificabile e 2) eseguire il reverse engineer dei moduli del Programma che si interfacciano direttamente con il Codice di Terze Parti Modificabile a condizione che sia solo allo scopo di eseguire il debug delle modifiche del Licenziatario per tale codice di terze parti. Gli obblighi di servizio e supporto di IBM, se esistenti, si applicano solo al Programma non modificato.
+
+13. Generale
+
+a. Le disposizioni del presente Accordo non pregiudicano in alcun modo le garanzie legali del consumatore che non possono essere escluse o limitate per contratto.
+
+b. Per i Programmi che IBM fornisce al Licenziatario in formato tangibile, IBM adempirà ai propri obblighi di distribuzione e consegna alla consegna di tali Programmi al corriere designato da IBM, salvo quanto diversamente concordato per iscritto tra il Licenziatario ed IBM.
+
+c. Qualora una qualsiasi clausola del presente Accordo dovesse essere dichiarata invalida o inefficace, le restanti clausole del presente Accordo rimarranno pienamente in vigore ed efficaci.
+
+d. Il Licenziatario accetta di rispettare tutte le disposizioni di legge e le normative applicabili in materia di importazione ed esportazione, incluse le norme sull'embargo degli Stati Uniti e le sanzioni e divieti sull'esportazione per determinati utilizzi o determinati utenti.
+
+e. Il Licenziatario autorizza International Business Machines Corporation e le sue consociate (e i loro successori e assegnatari, appaltatori e Business Partner IBM) di memorizzare e utilizzare le informazioni relative a contatti, laddove vi siano rapporti commerciali, ovunque essi operino, insieme ai prodotti e servizi IBM, per usi relativi alle attività commerciali tra IBM e il Licenziatario.
+
+f. Ciascuna parte consente all'altra l'opportunità ragionevole di conformarsi prima che questa reclami la mancata conformità ai suoi obblighi in base al presente Accordo. Le parti tenteranno in buona fede di risolvere tutte le dispute, i disaccordi o i reclami relativi al presente Accordo.
+
+g. Salvo quanto diversamente richiesto dalla legislazione applicabile, senza possibilità di rinuncia contrattuale o limitazione: 1) nessuna parte intraprenderà un'azione legale, indipendentemente dalla forma, per qualsiasi reclamo derivante da o relativo al presente Accordo per oltre due anni a far data dalla causa che ha dato vita all'azione; e 2) alla scadenza di tale limite, qualsiasi pretesa e diritto rispettivo relativo al reclamo decadono.
+
+h. Né il Licenziatario né IBM saranno ritenuti responsabili per eventuali inadempimenti dovuti a cause che esulano dal proprio controllo.
+
+i. Il presente Accordo non creerà alcun diritto o azione legale da terze parti, né IBM sarà responsabile di alcun reclamo da parte di terzi, fatto salvo laddove consentito nella suddetta Sottosezione 10.1 (Articoli per cui IBM può essere responsabile) per danni fisici (incluso il decesso) o danni tangibili a proprietà personale per cui IBM è legalmente responsabile.
+
+j. Nel concludere il presente Accordo, nessuna delle parti conterà su dichiarazioni non specificate in questo Accordo, incluse, ad esempio,dichiarazioni relative: 1) a prestazioni o funzionamento del Programma, diverse da quanto espressamente garantito nella suddetta Sezione 8 (Garanzia ed Esclusioni) ; 2) alle esperienze o ai consigli di altre parti; o 3) a risultati o risparmi che il Licenziatario possa raggiungere.
+
+k. IBM ha stipulato accordi con determinate organizzazioni (chiamate "Business Partner IBM") per promuovere, commercializzare, e supportare determinati Programmi. I Business Partner IBM restano indipendenti e separati da IBM. IBM non è responsabile per le azioni o le dichiarazioni dei Business Partner IBM o dei loro obblighi nei confronti del Licenziatario.
+
+l. Le clausole di licenza e di indennizzo di proprietà intellettuale di altri accordi del Licenziatario con IBM (come l'IBM Customer Agreement) non si applicano alle licenze del Programma concesse in base al presente Accordo.
+
+14. Ambito geografico e Legge Regolatrice
+
+14.1 Legge Regolatrice
+
+Entrambe le parti concordano sull'applicazione delle leggi del paese in cui è stata acquistata la licenza del Programma al fine di disciplinare, interpretare ed applicare tutti i diritti e le obbligazioni che derivano, o in qualche modo sono correlati al presente Accordo, indipendentemente dal conflitto di principi di legge.
+
+La Convenzione delle Nazioni Unite sui Contratti per la Vendita Internazionale di Merci non è applicabile.
+
+14.2 Giurisdizione
+
+Tutti i diritti, i doveri e le obbligazioni sono soggetti agli organi giudiziari del paese in cui è stata acquistata la licenza al Programma.
+
+Parte 2 - Condizioni applicabili ai singoli Paesi
+
+Per le licenze concesse in licenza nei paesi specificati di seguito, le seguenti clausole sostituiscono o modificano le clausole cui si è fatto riferimento nella Parte 1. Tutte le clausole della Parte 1 non modificate da questi emendamenti restano immodificate e in vigore. Questa Parte 2 è organizzata nel modo seguente:
+
+* Più emendamenti alla Parte 1 relativi ai singoli paesi, Sezione 14 (Legge Regolatrice e Giurisdizione); e
+
+* Europa, Medio Oriente, e Africa emendamenti ai singoli paesi per altre clausole dell'Accordo.
+
+Più emendamenti alla Parte 1 relativi ai singoli paesi, Sezione 14 (Legge Regolatrice e Giurisdizione)
+
+14.2 Giurisdizione
+
+Il seguente paragrafo si riferisce alla giurisdizione e sostituisce la Sottosezione 14.2 (Giurisdizione) in quanto si applica a quei paesi identificati di seguito:
+
+Tutti i diritti, i doveri e gli obblighi sono soggetti agli organi giudiziari del paese in cui è stata acquisita la licenza al Programma salvo nei paesi identificati di seguito in cui tutte le dispute derivanti da o correlate al presente Accordo, inclusi i procedimenti sommari, saranno portati dinanzi alla giurisdizione esclusiva dei seguenti tribunali competenti e ad essa soggetti:
+
+EUROPA, MEDIO ORIENTE E AFRICA
+
+in Italia: i tribunali di Milano;
+
+EUROPA, MEDIO ORIENTE, AFRICA (EMEA) EMENDAMENTI AI SINGOLI PAESI
+
+STATI MEMBRI DELL'UNIONE EUROPEA
+
+8. Garanzia ed Esclusioni
+
+Quanto segue si aggiunge alla Sezione 8 (Garanzia ed Esclusione):
+
+Nell'Unione Europea ("UE"), i consumatori hanno diritti legali in base alla legislazione nazionale applicabile che regola la vendita dei beni al consumatore. Quanto descritto nella presente Sezione 8 Garanzia ed Esclusioni non riguarda tali diritti. L'ambito territoriale della Garanzia Limitata è su scala mondiale.
+
+13. Condizioni Generali
+
+Quanto segue sostituisce l'Articolo 13.e:
+
+(1) Definizioni - Ai fini di questo Articolo 13.e, si applicano le seguenti definizioni aggiuntive:
+
+(a) Informazioni sui Contatti Aziendali - le informazioni sui contatti relativi all'azienda divulgate dal Licenziatario ad IBM, inclusi nomi, titoli, indirizzi aziendali, numeri di telefono e indirizzi email dei dipendenti ed appaltatori del Licenziatario. Per Austria, Italia e Svizzera, le Informazioni sui Contatti Aziendali includono anche informazioni sul Licenziatario e i suoi appaltatori come persona giuridica (ad esempio, dati sul fatturato del Licenziatario e altre informazioni transazionali)
+
+(b) Personale di Contatto Aziendale - i dipendenti e appaltatori del Licenziatario a cui si riferiscono le Informazioni sui Contatti Aziendali.
+
+(c) Autorità sulla Protezione di Dati - l'autorità stabilita dalla Legislazione sulla Protezione dei Dati e sulle Comunicazioni Elettroniche nel paese applicabile o, per i paesi non-UE, l'autorità responsabile della supervisione della protezione dei dati personali in quel paese, o (per quanto detto prima) qualsiasi successore debitamente nominato.
+
+(d) Legislazione sulla Protezione dei Dati e sulle Comunicazioni Elettroniche - (i) le legislazione e normativa locale applicabile in vigore che implementa i requisiti della Direttiva UE 95/46/EC (sulla protezione degli individui relativamente all'elaborazione dei dati personali e alla libera circolazione di tali dati) e della Direttiva UE 2002/58/EC (relativa all'elaborazione dei dati personali e alla tutela della privacy nel settore delle comunicazioni elettroniche); o (ii) per i paesi non-UE, la legislazione e/o la normativa passata nel paese applicabile relativa alla protezione dei dati personali e alla regolamentazione delle comunicazioni elettroniche che coinvolgono dati personali, inclusa (per quanto detto prima) qualsiasi sostituzione o modifica legale.
+
+(e) IBM Group - International Business Machines Corporation di Armonk, New York, USA, le sue consociate e i loro rispettivi Business Partner e subappaltatori.
+
+(2) Il Licenziatario autorizza IBM:
+
+(a) ad elaborare e utilizzare le Informazioni sui Contatti Aziendali all'interno di IBM Group a supporto del Licenziatario inclusa la fornitura di servizi di supporto, e allo scopo di promuovere le relazioni di business tra il Licenziatario e IBM Group, incluso, ad esempio, contattare il Personale di Contatti Aziendali (via email o in altro modo) e commercializzare prodotti e servizi di IBM Group (lo "Scopo Specificato"); e
+
+(b) a divulgare le Informazioni sui Contatti Aziendali ad altri membri di IBM Group in base allo Scopo Specificato.
+
+(3) IBM accetta che tutte le Informazioni sui Contatti Aziendali saranno elaborate in conformità con la Legislazione sulla Protezione dei Dati e sulle Comunicazioni Elettroniche e saranno utilizzate solo per lo Scopo Specificato.
+
+(4) Nei limiti richiesti dalla Legislazione sulla Protezione dei Dati e sulle Comunicazioni Elettroniche, il Licenziatario dichiara (a) di aver ottenuto (o che otterrà) le autorizzazioni dal (e ha rilasciato (o rilascerà) avvisi al) Personale sui Contatti Aziendali necessarie al fine di consentire ad IBM Group di elaborare e utilizzare le Informazioni sui Contatti Aziendali per lo Scopo Specificato.
+
+(5) Il Licenziatario autorizza IBM a trasferire le Informazioni sui Contatti Aziendali al di fuori dell'Area Economica Europea, a condizione che il trasferimento sia effettuato in base alle clausole contrattuali approvate dalla Legislazione sulla Protezione dei Dati e sulle Comunicazioni Elettroniche.
+
+ITALIA
+
+10. Limitazione di Responsabilità
+
+Quanto segue sostituisce le clausole della Sezione 10 (Limitazione di Responsabilità) nella loro interezza.
+
+Fatto salvo quanto stabilito da norme inderogabili di legge:
+
+10.1 Articoli per cui IBM può essere responsabile
+
+La responsabilità complessiva di IBM per qualsiasi pretesa di risarcimento per qualsiasi danno e perdita derivante dall'adempimento dei propri obblighi in base a o in associazione con il presente accordo o dovuta ad altre cause correlate all'accordo è limitata solo alla compensazione di quei danni e quelle perdite provate e realmente derivanti come conseguenza diretta del mancato adempimento di tali obblighi(se è colpa di IBM) o di tale causa, per un ammontare massimo pari al corrispettivo pagato dal Licenziatario per il Programma che ha causato i danni (se il Programma è soggetto a canoni per la durata fissa, fino al corrispettivo pari a dodici mesi).
+
+La suddetta limitazione non si applicherà ai danni alle persone (incluso il decesso) e ai danni tangibili al patrimonio e alla proprietà privata (beni mobili e immobili) per cui IBM è legalmente responsabile.
+
+10.2 Articoli per cui IBM non è responsabile
+
+IN NESSUN CASO IBM, O UNO QUALSIASI DEI SUOI SVILUPPATORI DI PROGRAMMI, SARÀ RESPONSABILE DEI SEGUENTI EVENTI, ANCHE SE INFORMATA DELLA POSSIBILITÀ DEL LORO VERIFICARSI: 1) PERDITA O DANNEGGIAMENTO DI DATI; 2) DANNI INCIDENTALI, ESEMPLARI O INDIRETTI, O QUALSIASI DANNO ECONOMICO CONSEGUENTE; E / O 3) LUCRO CESSANTE, MANCATI AFFARI, PERDITA COMMERCIALE, DI REDDITO, DI BENEFICI, O MANCATI RISPARMI ANCHE SE DERIVANTI COME IMMEDIATA CONSEGUENZA DALL'EVENTO CHE HA PRODOTTO IL DANNO.
+
+10.3 Fornitori e Sviluppatori del Programma
+
+La limitazione ed esclusione di responsabilità qui accettata si applica non solo alle attività eseguite da IBM, ma anche a quelle eseguite dai suoi fornitori e sviluppatori di Programmi, e rappresenta l'ammontare massimo per il quale IBM, i suoi fornitori e sviluppatori di Programmi, sono complessivamente responsabili.
+
+Z125-3301-14 (07/2011)
+
+
+AVVISO
+
+Questo documento include i seguenti documenti di Informazioni sulla Licenza per più Programmi. Ciascun documento di Informazioni sulla Licenza identifica il Programma a cui si applica. Sono applicabili solo quei documenti di Informazioni sulla Licenza per i Programmi per cui il licenziatario ha acquisito la titolarità.
+
+
+==============================================
+
+
+INFORMAZIONI RELATIVE ALLA LICENZA
+
+I Programmi elencati di seguito sono concessi in licenza in base alle seguenti clausole e condizioni License Information in aggiunta alle clausole della licenza del Programma precedentemente accettate dal Cliente e IBM. Se il Cliente non ha accettato precedentemente le clausole della licenza in vigore per il Programma, si applica Accordo Internazionale di Licenza di Programmi (Z125-3301-14).
+
+Nome Programma (Numero Programma):
+IBM Spectrum LSF Suite for HPC V10.2 (5725-Z41)
+
+Le seguenti clausole standard si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Diritto di utilizzo limitato
+
+Come descritto nell'International Program License Agreement ("IPLA") e in queste Informazioni sulla Licenza, IBM concede al licenziatario un diritto limitato di utilizzare il Programma. Questo diritto è limitato al livello di Uso Autorizzato, come Processor Value Unit ("PVU"), Resource Value Unit ("RVU"), Value Unit ("VU") o altro livello di utilizzo specificato, pagato dal licenziatario come evidenziato nella Prova di Titolarità. L'utilizzo del licenziatario può anche essere limitato ad una macchina specifica, o solo come Programma di Supporto, o soggetto ad altre limitazioni. Poiché il licenziatario non ha pagato per tutto il valore economico del Programma, non è consentito nessun altro utilizzo senza il pagamento di canoni aggiuntivi. Inoltre, il licenziatario non può utilizzare il Programma per fornire servizi IT commerciali a terze parti, fornire hosting o timesharing commerciali o sublicenziare, noleggiare o concedere in leasing il Programma, se non espressamente stabilito negli accordi applicabili, in base ai quali il licenziatario ottiene autorizzazioni all'utilizzo del Programma. Il licenziatario può ottenere altri diritti a seguito del pagamento di canoni aggiuntivi o in base a clausole diverse o supplementari. IBM si riserva il diritto di determinare se tali diritti aggiuntivi possano essere disponibili per il licenziatario.
+
+Specifiche
+
+Le specifiche del Programma si possono trovare nelle sezioni pubbliche Descrizioni e Informazioni Tecniche delle Lettere d'Annuncio del Programma.
+
+Usi Vietati
+
+Il licenziatario non può utilizzare o autorizzare altri a utilizzare il Programma, se un malfunzionamento del Programma potrebbe causare morte, lesioni fisiche o danni ambientali o alla proprietà.
+
+Componenti non utilizzate per stabilire le titolarità richieste
+
+Nel determinare il numero di titolarità necessarie per l'installazione o l'utilizzo del Programma da parte del licenziatario, non saranno prese in considerazione l'installazione o l'utilizzo delle seguenti componenti del Programma. In altre parole, il licenziatario può installare ed utilizzare le seguenti componenti del Programma, in base a clausole di licenza, ma tali componenti non sono utilizzate per determinare il numero di titolarità richieste per il Programma.
+lsf Client
+
+Codice concesso in licenza separatamente
+
+Le dichiarazioni di questo paragrafo non si applicano laddove ritenute invalide o inapplicabili in base alle norme che regolano la presente licenza. Ciascuna delle componenti elencate di seguito viene considerata "Codice concesso in licenza separatamente". Il Codice concesso in licenza separatamente di IBM è concesso in licenza al licenziatario in base alle clausole dell'accordo di licenza di terze parti applicabile stabilite nei file NON_IBM_LICENSE che accompagnano il Programma. Nonostante le clausole dell'Accordo, o di qualsiasi altro accordo stipulato dal licenziatario con IBM, le clausole di tali accordi di licenza di terze parti regoleranno l'utilizzo di tutto il Codice concesso in licenza separatamente da parte del licenziatario salvo quanto diversamente dichiarato di seguito.
+
+Futuri aggiornamenti o fix al Programma possono contenere ulteriore Codice concesso in licenza separatamente. Tale Codice concesso in licenza separatamente aggiuntivo e le relative licenze sono elencati in un altro file NON_IBM_LICENSE che accompagna l'aggiornamento o fix al Programma. Il licenziatario conferma di aver letto e accetta gli accordi di licenza contenuti nei file NON_IBM_LICENSE. Se il licenziatario non accetta le clausole di questi accordi di licenza di terze parti, non potrà utilizzare il Codice concesso in licenza separatamente.
+
+Per i Programmi acquisiti in base all'IPLA (International Program License Agreement) o all'ILAN (International Program License Agreement for Non Warranted Program) e il licenziatario è il licenziatario iniziale del Programma, se il licenziatario non accetta gli accordi di licenza di terze parti, il licenziatario potrà restituire il Programma in conformità con le clausole della sezione "Garanzia di rimborso", e all'interno dei tempi specificati stabiliti, dell'IPLA o dell'Accordo ILAN IBM.
+
+Nota: Nonostante le clausole dell'Accordo di licenza di terze parti, dell'Accordo o di qualsiasi altro accordo stipulato dal licenziatario con IBM e fatti salvi i limiti inderogabili di legge:
+(a) IBM fornisce questo Codice concesso in licenza separatamente al licenziatario SENZA GARANZIE DI ALCUN TIPO;
+(b) IBM NON FORNISCE ALCUNA GARANZIA E CONDIZIONE ESPRESSA E IMPLICITA INCLUSE, A TITOLO ESEMPLIFICATIVO, GARANZIE DI TITOLARITA', FUNZIONAMENTO ININTERROTTO O SENZA INTERFERENZE E GARANZIE IMPLICITE E CONDIZIONI DI COMMERCIABILITÀ ED IDONEITÀ PER UNO SCOPO PARTICOLARE, RELATIVAMENTE AL CODICE CONCESSO IN LICENZA SEPARATAMENTE;
+(c) IBM non è responsabile nei confronti del licenziatario, e non difenderà, indennizzerà o proteggerà il licenziatario da qualsiasi pretesa derivante dal Codice concesso in licenza separatamente o ad esso relativa; e
+(d) IBM non è responsabile per alcun danno diretto, indiretto, incidentale o consequenziale, inclusi a titolo di esempio, perdita di dati, perdita di risparmi o mancati profitti, relativi al Codice concesso in licenza separatamente.
+
+Nonostante tali esclusioni, in Germania ed Austria, la garanzia e responsabilità di IBM per il Codice concesso in licenza separatamente è regolata solo dalle clausole rispettivamente applicabili alla Germania e all'Austria negli accordi di licenza IBM.
+
+Nota: IBM può fornire supporto limitato per determinato Codice concesso in licenza separatamente. Se tale supporto è disponibile, i dettagli e qualsiasi clausola aggiuntiva relativi a tale supporto saranno presentati nel documento di Informazioni relative alla Licenza.
+
+I seguenti sono Codici concessi in licenza separatamente:
+GNU Make
+libxslt-python
+dnsmasq-utils
+ansible
+sshpass
+libnuma
+libnl3
+net-tools
+bc
+logstash-filter-geoip
+jsr305
+openjdk
+libstdc++
+node js
+
+Ridistribuibili
+
+Se il Programma include componenti che sono Ridistribuibili, saranno identificate nel file REDIST che accompagna il Programma. Oltre ai diritti della licenza concessi nell'Accordo, il licenziatario può distribuire i Ridistribuibili in base alle seguenti clausole:
+1) La ridistribuzione deve essere solo in formato codice oggetto e rispettare tutte le direttive, istruzioni e specifiche della documentazione di accompagnamento al Programma o REDIST;
+2) Se la documentazione di accompagnamento al Programma consente espressamente di modificare i Ridistribuibili, tale modifica dovrà rispettare tutte le direttive, le istruzioni e le specifiche in quella documentazione e in queste modifiche, se esistenti, devono essere considerati come Ridistribuibili;
+3) I Ridistribuibili possono essere distribuiti solo come parte della propria applicazione sviluppata utilizzando il Programma ("Applicazione del licenziatario") e solo per supportare i clienti in associazione al loro utilizzo dell'Applicazione del licenziatario. L'Applicazione del licenziatario deve costituire un'aggiunta di valore significativo tale che i Ridistribuibili non siano motivo fondamentale per l'acquisizione da parte degli utenti finali del proprio prodotto software;
+4) Se i Ridistribuibili includono un Java Runtime Environment, il licenziatario deve anche includere altri Ridistribuibili non-Java con l'Applicazione del licenziatario, a meno che l'Applicazione non sia progettata per funzionare solo su dispositivi di computer classici (ad esempio, laptop, desktop e server) e non su dispositivi palmari o pervasivi (cioè, dispositivi che contengono un microprocessore ma non hanno computing come scopo primario);
+5) Il licenziatario non può eliminare le istruzioni relative al copyright o agli avvisi contenute nei Ridistribuibili;
+6) Il licenziatario accetta di proteggere IBM, i suoi fornitori o distributori da e contro richieste derivanti dall'uso o distribuzione dell'Applicazione del licenziatario;
+7) Il licenziatario non può utilizzare lo stesso nome di percorso utilizzato per i file/moduli Ridistribuibili originali;
+8) Il licenziatario non può utilizzare nomi o marchi di IBM, dei suoi fornitori o distributori relativamente alla commercializzazione delle proprie applicazioni senza previa approvazione di IBM, di quei fornitori o distributori;
+9) Fatti salvi i limiti inderogabili di legge, IBM, i suoi fornitori o distributori forniscono i Ridistribuibili e la documentazione correlata senza obbligo di supporto e "NELLO STATO IN CUI SI TROVANO," SENZA GARANZIE, ESPRESSE O IMPLICITE, INCLUSE GARANZIE DI TITOLARITA', FUNZIONAMENTO ININTERROTTO O INTERFERENZA E LE GARANZIE E LE CONDIZIONI IMPLICITE DI COMMERCIABILITA' E IDONEITA' PER UNO SCOPO PARTICOLARE;
+10) Il licenziatario è responsabile di tutta l'assistenza tecnica per la propria applicazione e qualsiasi modifica ai Ridistribuibili; e
+11) L'accordo di licenza stipulato con l'utente finale dell'Applicazione del licenziatario, il licenziatario avviserà l'utente finale che i Ridistribuibili o le loro modifiche non possono essere i) utilizzati per scopi diversi da quello di attivazione dell'Applicazione, ii) copiati (salvo che per scopi di backup), iii) ulteriormente distribuiti o trasferiti senza l'Applicazione del licenziatario, o iv) soggetti ad assemblaggio a ritroso, compilazione a ritroso, o altrimenti tradotti salvo laddove specificamente consentito dalla legge e senza possibilità di deroga contrattuale. Inoltre, l'accordo di licenza del licenziatario deve proteggere IBM almeno quanto le clausole del presente Accordo.
+
+Componenti Sorgente e Materiali di Esempio
+
+Il Programma può includere alcune componenti in formato di codice sorgente ("Componenti Sorgente") e altri materiali identificati come Materiali di esempio. Il licenziatario può copiare e modificare le Componenti Sorgente e i Materiali di Esempio per uso interno solo a condizione che tale uso sia nei limiti dei diritti di licenza previsti in base al presente Accordo, a condizione tuttavia che il licenziatario non possa alterare o eliminare alcuna informazione sul copyright o avviso contenuto nelle Componenti Sorgente e nei Materiali di Esempio. IBM fornisce le Componenti Sorgente e i Materiali di Esempio senza obbligo di supporto e "NELLO STATO IN CUI SI TROVANO," SENZA GARANZIE, ESPRESSE O IMPLICITE, INCLUSE GARANZIE DI TITOLARITA', FUNZIONAMENTO ININTERROTTO O INTERFERENZA E LE GARANZIE E LE CONDIZIONI IMPLICITE DI COMMERCIABILITA' E IDONEITA' PER UNO SCOPO PARTICOLARE.
+
+Per le Componenti Sorgente e i Matriali di Esempio elencati nel file REDIST del Programma, il licenziatario può ridistribuire le versioni modificate di tali Componenti Sorgente o dei Materiali di Esempio in conformità con le clausole di questa licenza e di qualsiasi istruzione nel file REDIST.
+
+Clausole per Microsoft Visual Studio
+
+Il Programma può contenere codice Microsoft Visual Studio SDK. Il licenziatario non può utilizzare tale codice per sviluppare estensioni per Microsoft Visual Studio. Il licenziatario non modificherà o distribuirà il codice sorgente di qualsiasi software Microsoft Visual Studio SDK incluso in questa applicazioni così che qualsiasi sua parte sia soggetta ad una Licenza Esclusa. Una "Licenza Esclusa" richiede, come condizione per l'uso, la modifica o la distribuzione, che (a) il codice sia divulgato o distribuito in formato di codice sorgente, o (b) altri abbiano il diritto di modificarlo.
+
+Sistemi Operativi di Terze Parti
+
+Per comodità del licenziatario, il Programma può essere accompagnato da un sistema operativo di terze parti. Il sistema operativo non fa parte del Programma, ed è concesso in licenza direttamente dal fornitore del sistema operativo (es., Red Hat Inc., Novell Inc., ecc.) al licenziatario. IBM non è una parte della licenza tra il licenziatario e il fornitore del sistema operativo di terze parti, e include il sistema operativo di terze parti "NELLO STATO IN CUI SI TROVA", senza dichiarazioni o garanzie, espresse o implicite, incluse garanzie implicite di commerciabilità, idoneità per uno scopo particolare o non violazione.
+
+Limitazioni sull'esportazione e importazione
+
+Questo Programma può contenere crittografia. Il trasferimento a o l'utilizzo da parte di utenti del Programma può essere vietato o soggetto a leggi, normative o politiche sull'esportazione o l'importazione, relative a quelle delle Normative Amministrative sull'Esportazione degli Stati Uniti. Il licenziatario si assume tutta la responsabilità nell'osservare tutte le leggi applicabili, le normative e le politiche relative all'esportazione, all'importazione o all'utilizzo di questo Programma, incluse, ad esempio, le limitazioni del Governo degli Stati Uniti sulle esportazioni o ri-esportazioni. Per ottenere la classificazione di esportazione di questo Programma su: https://www.ibm.com/products/exporting/.
+
+Le seguenti unità di misura possono essere applicabili all'utilizzo del Programma da parte del licenziatario.
+
+Installazione
+
+Un'Installazione è l'unità di misura per cui il Programma può essere concesso in licenza. Un'Installazione è una copia installata del Programma su un disco virtuale o fisico reso disponibile per essere eseguito su un computer. Il licenziatario deve ottenere una titolarità per ogni Installazione del Programma.
+
+Inoltre, le seguenti clausole si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Questo Programma include il seguente software che non può essere utilizzato per scopi dannosi. 
+
+seguito da un elenco di componenti JSON concessi in licenza:
+
+JSON
+
+
+L/N:  L-YYAG-BHLMMD
+D/N:  L-YYAG-BHLMMD
+P/N:  L-YYAG-BHLMMD
+
+
+
+==============================================
+
+
+INFORMAZIONI RELATIVE ALLA LICENZA
+
+I Programmi elencati di seguito sono concessi in licenza in base alle seguenti clausole e condizioni License Information in aggiunta alle clausole della licenza del Programma precedentemente accettate dal Cliente e IBM. Se il Cliente non ha accettato precedentemente le clausole della licenza in vigore per il Programma, si applica Accordo Internazionale di Licenza di Programmi (Z125-3301-14).
+
+Nome Programma (Numero Programma):
+IBM Spectrum LSF Suite Capacity V10.2 (5737-F31)
+
+Le seguenti clausole standard si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Diritto di utilizzo limitato
+
+Come descritto nell'International Program License Agreement ("IPLA") e in queste Informazioni sulla Licenza, IBM concede al licenziatario un diritto limitato di utilizzare il Programma. Questo diritto è limitato al livello di Uso Autorizzato, come Processor Value Unit ("PVU"), Resource Value Unit ("RVU"), Value Unit ("VU") o altro livello di utilizzo specificato, pagato dal licenziatario come evidenziato nella Prova di Titolarità. L'utilizzo del licenziatario può anche essere limitato ad una macchina specifica, o solo come Programma di Supporto, o soggetto ad altre limitazioni. Poiché il licenziatario non ha pagato per tutto il valore economico del Programma, non è consentito nessun altro utilizzo senza il pagamento di canoni aggiuntivi. Inoltre, il licenziatario non può utilizzare il Programma per fornire servizi IT commerciali a terze parti, fornire hosting o timesharing commerciali o sublicenziare, noleggiare o concedere in leasing il Programma, se non espressamente stabilito negli accordi applicabili, in base ai quali il licenziatario ottiene autorizzazioni all'utilizzo del Programma. Il licenziatario può ottenere altri diritti a seguito del pagamento di canoni aggiuntivi o in base a clausole diverse o supplementari. IBM si riserva il diritto di determinare se tali diritti aggiuntivi possano essere disponibili per il licenziatario.
+
+Specifiche
+
+Le specifiche del Programma si possono trovare nelle sezioni pubbliche Descrizioni e Informazioni Tecniche delle Lettere d'Annuncio del Programma.
+
+Componenti vietate
+
+Nonostante quanto dichiarato nell'Accordo, il licenziatario non può utilizzare nessuna delle seguenti componenti o funzioni del Programma:
+mbatchd
+
+Componenti non utilizzate per stabilire le titolarità richieste
+
+Nel determinare il numero di titolarità necessarie per l'installazione o l'utilizzo del Programma da parte del licenziatario, non saranno prese in considerazione l'installazione o l'utilizzo delle seguenti componenti del Programma. In altre parole, il licenziatario può installare ed utilizzare le seguenti componenti del Programma, in base a clausole di licenza, ma tali componenti non sono utilizzate per determinare il numero di titolarità richieste per il Programma.
+lsf Client
+
+Usi Vietati
+
+Il licenziatario non può utilizzare o autorizzare altri ad utilizzare il Programma, da solo o insieme ad altri servizi o prodotti, in supporto di una qualsiasi delle seguenti attività ad alto rischio: progettazione, costruzione, controllo o manutenzione di impianti nucleari, sistemi di trasmissione di massa, sistemi di controllo del traffico aereo, sistemi di controllo delle autovetture, sistema per armamenti o sistemi di navigazione o comunicazione degli aerei, o qualsiasi altra attività in cui il guasto del programma potrebbe causare una minaccia o il decesso di persone.
+
+Le seguenti unità di misura possono essere applicabili all'utilizzo del Programma da parte del licenziatario.
+
+Server Virtuale
+
+Un Server Virtuale è l'unità di misura per cui il Programma può essere concesso in licenza. Un server è un computer fisico che comprende unità di elaborazione, memoria e capacità di input/output e che esegue le procedure, i comandi o le applicazioni richieste per uno o più utenti o dispositivi client. Quando sono utilizzati rack, blade enclosure o altre apparecchiature simili, ogni dispositivo fisico separabile (ad esempio, un blade o un dispositivo montato su rack) che ha le componenti richieste è considerato un Server a parte. Un server virtuale è o un computer virtuale creato dal partizionamento di risorse disponibili per un server fisico o un server fisico non partizionato. Il licenziatario deve ottenere titolarità per Server Virtuale per ogni server virtuale reso disponibile per il Programma, a prescindere dal numero di processor core nel server virtuale o dal numero di copie del Programma sul server virtuale.
+
+Inoltre, le seguenti clausole si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Titolarità richieste
+
+Oltre alle titolarità richieste per il Programma, il licenziatario deve ottenere titolarità User Value Unit di IBM Spectrum LSF Suite Capacity sufficienti a coprire tutti gli utenti del Programma.
+
+Resource Value Unit (RVU) - Server virtuale
+
+La Risorsa ai fini del calcolo RVU è un Server virtuale. Un Server è un computer fisico che comprende unità di elaborazione, memoria e capacità di input/output e che esegue le procedure, i comandi o le applicazioni richieste per uno o più utenti o dispositivi client. Quando sono utilizzati rack, blade enclosure o altre apparecchiature simili, ogni dispositivo fisico separabile (ad es., un blade o un dispositivo montato su rack) che ha le componenti richieste è considerato un Server a parte. Un Server Virtuale è un computer virtuale creato mediante il partizionamento delle risorse disponibili per un Server fisico o un Server fisico non partizionato. </p>
+
+Tabella di Conversione per Resource Value Unit
+Da 1 a 20 Risorse, 1,00 RVU per Risorsa
+Da 21 a 50 Risorsa, 20 RVU più 0,83 RVU per Risorsa oltre 20
+Da 51 a 100 Risorse, 44,9 RVU più 0,80 RVU per Risorsa oltre 50
+Da 101 a 250 Risorse, 84,9 RVU più 0,76 RVU per Risorsa oltre 100
+Da 251 a 500 Risorse, 198,9 RVU più 0,60 RVU per Risorsa oltre 250
+Da 501 a 1,000 Risorse, 348,9 RVU più 0,50 RVU per Risorsa oltre 500
+Da 1.001 a 5.000 Risorse, 598,9 RVU più 0,47 RVU per Risorsa oltre 1.000
+Da 5.001 a 10.000 Risorse, 2.478., RVU più 0,40 RVU per Risorsa oltre 5.000
+Da 10.001 a 25.000 Risorse, 4.478,9 RVU più 0,36 RVU per Risorsa oltre 10.000
+Per oltre 25.000 Risorse, 9.878,9 RVU più 0,33 RVU per Risorsa oltre 25.000
+
+L/N:  L-TKAO-AQ8R2X
+D/N:  L-TKAO-AQ8R2X
+P/N:  L-TKAO-AQ8R2X
+
+
+
+==============================================
+
+
+INFORMAZIONI RELATIVE ALLA LICENZA
+
+I Programmi elencati di seguito sono concessi in licenza in base alle seguenti clausole e condizioni License Information in aggiunta alle clausole della licenza del Programma precedentemente accettate dal Cliente e IBM. Se il Cliente non ha accettato precedentemente le clausole della licenza in vigore per il Programma, si applica Accordo Internazionale di Licenza di Programmi (Z125-3301-14).
+
+Nome Programma (Numero Programma):
+IBM Spectrum LSF Suite Capacity 10.2 (5737-F31)
+
+Le seguenti clausole standard si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Diritto di utilizzo limitato
+
+Come descritto nell'International Program License Agreement ("IPLA") e in queste Informazioni sulla Licenza, IBM concede al licenziatario un diritto limitato di utilizzare il Programma. Questo diritto è limitato al livello di Uso Autorizzato, come Processor Value Unit ("PVU"), Resource Value Unit ("RVU"), Value Unit ("VU") o altro livello di utilizzo specificato, pagato dal licenziatario come evidenziato nella Prova di Titolarità. L'utilizzo del licenziatario può anche essere limitato ad una macchina specifica, o solo come Programma di Supporto, o soggetto ad altre limitazioni. Poiché il licenziatario non ha pagato per tutto il valore economico del Programma, non è consentito nessun altro utilizzo senza il pagamento di canoni aggiuntivi. Inoltre, il licenziatario non può utilizzare il Programma per fornire servizi IT commerciali a terze parti, fornire hosting o timesharing commerciali o sublicenziare, noleggiare o concedere in leasing il Programma, se non espressamente stabilito negli accordi applicabili, in base ai quali il licenziatario ottiene autorizzazioni all'utilizzo del Programma. Il licenziatario può ottenere altri diritti a seguito del pagamento di canoni aggiuntivi o in base a clausole diverse o supplementari. IBM si riserva il diritto di determinare se tali diritti aggiuntivi possano essere disponibili per il licenziatario.
+
+Specifiche
+
+Le specifiche del Programma si possono trovare nelle sezioni pubbliche Descrizioni e Informazioni Tecniche delle Lettere d'Annuncio del Programma.
+
+Usi Vietati
+
+Il licenziatario non può utilizzare o autorizzare altri ad utilizzare il Programma, da solo o insieme ad altri servizi o prodotti, in supporto di una qualsiasi delle seguenti attività ad alto rischio: progettazione, costruzione, controllo o manutenzione di impianti nucleari, sistemi di trasmissione di massa, sistemi di controllo del traffico aereo, sistemi di controllo delle autovetture, sistema per armamenti o sistemi di navigazione o comunicazione degli aerei, o qualsiasi altra attività in cui il guasto del programma potrebbe causare una minaccia o il decesso di persone.
+
+Le seguenti unità di misura possono essere applicabili all'utilizzo del Programma da parte del licenziatario.
+
+User Value Unit (UVU)
+
+User Value Unit (UVU) è l'unità di misura per cui il Programma può essere concesso in licenza. Le Prove di Titolarità UVU si basano sul numero e sul tipo di Utenti per il Programma dato. Il licenziatario deve ottenere titolarità sufficienti per il numero di UVU richieste per l'ambiente del licenziatario come specificato nella seguente tabella. Le titolarità per UVU sono specifiche al Programma e al tipo di utente e non possono essere scambiate, intercambiate o aggregate con titolarità per UVU di un altro programma o tipo di utente.
+
+Inoltre, le seguenti clausole si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Titolarità richieste
+
+Oltre alle titolarità richieste per il Programma, il licenziatario deve ottenere titolarità per Installazione di IBM Spectrum LSF Suite for Workgroups, IBM Spectrum LSF Suite for HPC, o IBM Spectrum LSF Suite for Enterprise, sufficienti a coprire tutte le installazioni di MBATCHD rese disponibili per essere eseguite su un computer, come anche titolarità RVU (Resource Value Unit) di IBM Spectrum LSF Suite Capacity sufficienti a coprire ogni server virtuale reso disponibile per il Programma.
+
+User Value Unit (UVU) - Utente simultaneo </p>
+
+L'Utente ai fini del calcolo UVU è un Utente simultaneo. Un Utente simultaneo è un individuo che accede al Programma in un determinato momento. A prescindere dal fatto che l'individuo stia più volte accedendo al Programma simultaneamente o meno, l'individuo verrà considerato come unico Utente Simultaneo. Il Programma può essere installato su un qualsiasi numero di computer o server, ma il licenziatario deve ottenere titolarità per User Value Unit sufficienti a coprire il numero massimo di Utenti Simultanei che accedono simultaneamente al Programma direttamente o indirettamente (ad es., tramite un programma multiplexing, un dispositivo o un application server) attraverso qualsiasi mezzo).
+
+Tabella di Conversione per User Value Unit
+Da 1 a 20 Utenti, 1,00 UVU per Utente
+Da 21 a 50 Utenti, 20 UVU più 0,83 UVU per Utente oltre 20
+Da 51 a 100 Utenti, 44,9 UVU più 0,80 UVU per Utente oltre 50
+Da 101 a 250 Utenti, 84,9 UVU più 0,76 UVU per Utente oltre 100
+Da 251 a 500 Utenti, 198,9 UVU più 0,60 UVU per Utente oltre 250
+Da 501 a 1.000 Utenti, 348,9 UVU più 0.50 UVU per Utente oltre 500
+Da 1.001 a 5.000 Utenti, 598,9 UVU più 0,47 UVU per Utente oltre 1.000
+Da 5.001 a 10.000 Utenti, 2.478,9 UVU più 0,40 UVU per Utente oltre 5.000
+Da 10.001 a 25.000 Utenti, 4.478.9 UVU più 0,36 UVU per Utente oltre 10.000
+Per oltre 25.000 Utenti, 9.878,9 UVU più 0,33 UVU per Utente oltre 25.000
+
+
+L/N:  L-TKAO-AQ8QU5
+D/N:  L-TKAO-AQ8QU5
+P/N:  L-TKAO-AQ8QU5
+
+
+
+==============================================
+
+
+INFORMAZIONI RELATIVE ALLA LICENZA
+
+I Programmi elencati di seguito sono concessi in licenza in base alle seguenti clausole e condizioni License Information in aggiunta alle clausole della licenza del Programma precedentemente accettate dal Cliente e IBM. Se il Cliente non ha accettato precedentemente le clausole della licenza in vigore per il Programma, si applica Accordo Internazionale di Licenza di Programmi (Z125-3301-14).
+
+Nome Programma (Numero Programma):
+IBM Spectrum LSF Suite Capacity v10.2 (5737-F31)
+IBM Spectrum LSF Suite for Workgroups v10.2 (5725-Z40)
+IBM Spectrum LSF Suite for HPC v10.2 (5725-Z41)
+IBM Spectrum LSF Suite for Enterprise v10.2 (5737-F30)
+IBM Spectrum LSF v10.1 (5725-G82)
+
+Le seguenti clausole standard si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Diritto di utilizzo limitato
+
+Come descritto nell'International Program License Agreement ("IPLA") e in queste Informazioni sulla Licenza, IBM concede al licenziatario un diritto limitato di utilizzare il Programma. Questo diritto è limitato al livello di Uso Autorizzato, come Processor Value Unit ("PVU"), Resource Value Unit ("RVU"), Value Unit ("VU") o altro livello di utilizzo specificato, pagato dal licenziatario come evidenziato nella Prova di Titolarità. L'utilizzo del licenziatario può anche essere limitato ad una macchina specifica, o solo come Programma di Supporto, o soggetto ad altre limitazioni. Poiché il licenziatario non ha pagato per tutto il valore economico del Programma, non è consentito nessun altro utilizzo senza il pagamento di canoni aggiuntivi. Inoltre, il licenziatario non può utilizzare il Programma per fornire servizi IT commerciali a terze parti, fornire hosting o timesharing commerciali o sublicenziare, noleggiare o concedere in leasing il Programma, se non espressamente stabilito negli accordi applicabili, in base ai quali il licenziatario ottiene autorizzazioni all'utilizzo del Programma. Il licenziatario può ottenere altri diritti a seguito del pagamento di canoni aggiuntivi o in base a clausole diverse o supplementari. IBM si riserva il diritto di determinare se tali diritti aggiuntivi possano essere disponibili per il licenziatario.
+
+Specifiche
+
+Le specifiche del Programma si possono trovare nelle sezioni pubbliche Descrizioni e Informazioni Tecniche delle Lettere d'Annuncio del Programma.
+
+Usi Vietati
+
+Il licenziatario non può utilizzare o autorizzare altri a utilizzare il Programma, se un malfunzionamento del Programma potrebbe causare morte, lesioni fisiche o danni ambientali o alla proprietà.
+
+Componenti vietate
+
+Nonostante quanto dichiarato nell'Accordo, il licenziatario non può utilizzare nessuna delle seguenti componenti o funzioni del Programma:
+mbatchd, vemkd, egosc
+
+Componenti non utilizzate per stabilire le titolarità richieste
+
+Nel determinare il numero di titolarità necessarie per l'installazione o l'utilizzo del Programma da parte del licenziatario, non saranno prese in considerazione l'installazione o l'utilizzo delle seguenti componenti del Programma. In altre parole, il licenziatario può installare ed utilizzare le seguenti componenti del Programma, in base a clausole di licenza, ma tali componenti non sono utilizzate per determinare il numero di titolarità richieste per il Programma.
+LSF Client
+
+Codice concesso in licenza separatamente
+
+Le dichiarazioni di questo paragrafo non si applicano laddove ritenute invalide o inapplicabili in base alle norme che regolano la presente licenza. Ciascuna delle componenti elencate di seguito viene considerata "Codice concesso in licenza separatamente". Il Codice concesso in licenza separatamente di IBM è concesso in licenza al licenziatario in base alle clausole dell'accordo di licenza di terze parti applicabile stabilite nei file NON_IBM_LICENSE che accompagnano il Programma. Nonostante le clausole dell'Accordo, o di qualsiasi altro accordo stipulato dal licenziatario con IBM, le clausole di tali accordi di licenza di terze parti regoleranno l'utilizzo di tutto il Codice concesso in licenza separatamente da parte del licenziatario salvo quanto diversamente dichiarato di seguito.
+
+Futuri aggiornamenti o fix al Programma possono contenere ulteriore Codice concesso in licenza separatamente. Tale Codice concesso in licenza separatamente aggiuntivo e le relative licenze sono elencati in un altro file NON_IBM_LICENSE che accompagna l'aggiornamento o fix al Programma. Il licenziatario conferma di aver letto e accetta gli accordi di licenza contenuti nei file NON_IBM_LICENSE. Se il licenziatario non accetta le clausole di questi accordi di licenza di terze parti, non potrà utilizzare il Codice concesso in licenza separatamente.
+
+Per i Programmi acquisiti in base all'IPLA (International Program License Agreement) o all'ILAN (International Program License Agreement for Non Warranted Program) e il licenziatario è il licenziatario iniziale del Programma, se il licenziatario non accetta gli accordi di licenza di terze parti, il licenziatario potrà restituire il Programma in conformità con le clausole della sezione "Garanzia di rimborso", e all'interno dei tempi specificati stabiliti, dell'IPLA o dell'Accordo ILAN IBM.
+
+Nota: Nonostante le clausole dell'Accordo di licenza di terze parti, dell'Accordo o di qualsiasi altro accordo stipulato dal licenziatario con IBM e fatti salvi i limiti inderogabili di legge:
+(a) IBM fornisce questo Codice concesso in licenza separatamente al licenziatario SENZA GARANZIE DI ALCUN TIPO;
+(b) IBM NON FORNISCE ALCUNA GARANZIA E CONDIZIONE ESPRESSA E IMPLICITA INCLUSE, A TITOLO ESEMPLIFICATIVO, GARANZIE DI TITOLARITA', FUNZIONAMENTO ININTERROTTO O SENZA INTERFERENZE E GARANZIE IMPLICITE E CONDIZIONI DI COMMERCIABILITÀ ED IDONEITÀ PER UNO SCOPO PARTICOLARE, RELATIVAMENTE AL CODICE CONCESSO IN LICENZA SEPARATAMENTE;
+(c) IBM non è responsabile nei confronti del licenziatario, e non difenderà, indennizzerà o proteggerà il licenziatario da qualsiasi pretesa derivante dal Codice concesso in licenza separatamente o ad esso relativa; e
+(d) IBM non è responsabile per alcun danno diretto, indiretto, incidentale o consequenziale, inclusi a titolo di esempio, perdita di dati, perdita di risparmi o mancati profitti, relativi al Codice concesso in licenza separatamente.
+
+Nonostante tali esclusioni, in Germania ed Austria, la garanzia e responsabilità di IBM per il Codice concesso in licenza separatamente è regolata solo dalle clausole rispettivamente applicabili alla Germania e all'Austria negli accordi di licenza IBM.
+
+Nota: IBM può fornire supporto limitato per determinato Codice concesso in licenza separatamente. Se tale supporto è disponibile, i dettagli e qualsiasi clausola aggiuntiva relativi a tale supporto saranno presentati nel documento di Informazioni relative alla Licenza.
+
+I seguenti sono Codici concessi in licenza separatamente:
+GNU Make
+libxslt-python
+dnsmasq-utils
+ansible
+sshpass
+
+Ridistribuibili
+
+Se il Programma include componenti che sono Ridistribuibili, saranno identificate nel file REDIST che accompagna il Programma. Oltre ai diritti della licenza concessi nell'Accordo, il licenziatario può distribuire i Ridistribuibili in base alle seguenti clausole:
+1) La ridistribuzione deve essere solo in formato codice oggetto e rispettare tutte le direttive, istruzioni e specifiche della documentazione di accompagnamento al Programma o REDIST;
+2) Se la documentazione di accompagnamento al Programma consente espressamente di modificare i Ridistribuibili, tale modifica dovrà rispettare tutte le direttive, le istruzioni e le specifiche in quella documentazione e in queste modifiche, se esistenti, devono essere considerati come Ridistribuibili;
+3) I Ridistribuibili possono essere distribuiti solo come parte della propria applicazione sviluppata utilizzando il Programma ("Applicazione del licenziatario") e solo per supportare i clienti in associazione al loro utilizzo dell'Applicazione del licenziatario. L'Applicazione del licenziatario deve costituire un'aggiunta di valore significativo tale che i Ridistribuibili non siano motivo fondamentale per l'acquisizione da parte degli utenti finali del proprio prodotto software;
+4) Se i Ridistribuibili includono un Java Runtime Environment, il licenziatario deve anche includere altri Ridistribuibili non-Java con l'Applicazione del licenziatario, a meno che l'Applicazione non sia progettata per funzionare solo su dispositivi di computer classici (ad esempio, laptop, desktop e server) e non su dispositivi palmari o pervasivi (cioè, dispositivi che contengono un microprocessore ma non hanno computing come scopo primario);
+5) Il licenziatario non può eliminare le istruzioni relative al copyright o agli avvisi contenute nei Ridistribuibili;
+6) Il licenziatario accetta di proteggere IBM, i suoi fornitori o distributori da e contro richieste derivanti dall'uso o distribuzione dell'Applicazione del licenziatario;
+7) Il licenziatario non può utilizzare lo stesso nome di percorso utilizzato per i file/moduli Ridistribuibili originali;
+8) Il licenziatario non può utilizzare nomi o marchi di IBM, dei suoi fornitori o distributori relativamente alla commercializzazione delle proprie applicazioni senza previa approvazione di IBM, di quei fornitori o distributori;
+9) Fatti salvi i limiti inderogabili di legge, IBM, i suoi fornitori o distributori forniscono i Ridistribuibili e la documentazione correlata senza obbligo di supporto e "NELLO STATO IN CUI SI TROVANO," SENZA GARANZIE, ESPRESSE O IMPLICITE, INCLUSE GARANZIE DI TITOLARITA', FUNZIONAMENTO ININTERROTTO O INTERFERENZA E LE GARANZIE E LE CONDIZIONI IMPLICITE DI COMMERCIABILITA' E IDONEITA' PER UNO SCOPO PARTICOLARE;
+10) Il licenziatario è responsabile di tutta l'assistenza tecnica per la propria applicazione e qualsiasi modifica ai Ridistribuibili; e
+11) L'accordo di licenza stipulato con l'utente finale dell'Applicazione del licenziatario, il licenziatario avviserà l'utente finale che i Ridistribuibili o le loro modifiche non possono essere i) utilizzati per scopi diversi da quello di attivazione dell'Applicazione, ii) copiati (salvo che per scopi di backup), iii) ulteriormente distribuiti o trasferiti senza l'Applicazione del licenziatario, o iv) soggetti ad assemblaggio a ritroso, compilazione a ritroso, o altrimenti tradotti salvo laddove specificamente consentito dalla legge e senza possibilità di deroga contrattuale. Inoltre, l'accordo di licenza del licenziatario deve proteggere IBM almeno quanto le clausole del presente Accordo.
+
+Componenti Sorgente e Materiali di Esempio
+
+Il Programma può includere alcune componenti in formato di codice sorgente ("Componenti Sorgente") e altri materiali identificati come Materiali di esempio. Il licenziatario può copiare e modificare le Componenti Sorgente e i Materiali di Esempio per uso interno solo a condizione che tale uso sia nei limiti dei diritti di licenza previsti in base al presente Accordo, a condizione tuttavia che il licenziatario non possa alterare o eliminare alcuna informazione sul copyright o avviso contenuto nelle Componenti Sorgente e nei Materiali di Esempio. IBM fornisce le Componenti Sorgente e i Materiali di Esempio senza obbligo di supporto e "NELLO STATO IN CUI SI TROVANO," SENZA GARANZIE, ESPRESSE O IMPLICITE, INCLUSE GARANZIE DI TITOLARITA', FUNZIONAMENTO ININTERROTTO O INTERFERENZA E LE GARANZIE E LE CONDIZIONI IMPLICITE DI COMMERCIABILITA' E IDONEITA' PER UNO SCOPO PARTICOLARE.
+
+Per le Componenti Sorgente e i Matriali di Esempio elencati nel file REDIST del Programma, il licenziatario può ridistribuire le versioni modificate di tali Componenti Sorgente o dei Materiali di Esempio in conformità con le clausole di questa licenza e di qualsiasi istruzione nel file REDIST.
+
+Clausole per Microsoft Visual Studio
+
+Il Programma può contenere codice Microsoft Visual Studio SDK. Il licenziatario non può utilizzare tale codice per sviluppare estensioni per Microsoft Visual Studio. Il licenziatario non modificherà o distribuirà il codice sorgente di qualsiasi software Microsoft Visual Studio SDK incluso in questa applicazioni così che qualsiasi sua parte sia soggetta ad una Licenza Esclusa. Una "Licenza Esclusa" richiede, come condizione per l'uso, la modifica o la distribuzione, che (a) il codice sia divulgato o distribuito in formato di codice sorgente, o (b) altri abbiano il diritto di modificarlo.
+
+Sistemi Operativi di Terze Parti
+
+Per comodità del licenziatario, il Programma può essere accompagnato da un sistema operativo di terze parti. Il sistema operativo non fa parte del Programma, ed è concesso in licenza direttamente dal fornitore del sistema operativo (es., Red Hat Inc., Novell Inc., ecc.) al licenziatario. IBM non è una parte della licenza tra il licenziatario e il fornitore del sistema operativo di terze parti, e include il sistema operativo di terze parti "NELLO STATO IN CUI SI TROVA", senza dichiarazioni o garanzie, espresse o implicite, incluse garanzie implicite di commerciabilità, idoneità per uno scopo particolare o non violazione.
+
+Limitazioni sull'esportazione e importazione
+
+Questo Programma può contenere crittografia. Il trasferimento a o l'utilizzo da parte di utenti del Programma può essere vietato o soggetto a leggi, normative o politiche sull'esportazione o l'importazione, relative a quelle delle Normative Amministrative sull'Esportazione degli Stati Uniti. Il licenziatario si assume tutta la responsabilità nell'osservare tutte le leggi applicabili, le normative e le politiche relative all'esportazione, all'importazione o all'utilizzo di questo Programma, incluse, ad esempio, le limitazioni del Governo degli Stati Uniti sulle esportazioni o ri-esportazioni. Per ottenere la classificazione di esportazione di questo Programma su: https://www.ibm.com/products/exporting/.
+
+Le seguenti unità di misura possono essere applicabili all'utilizzo del Programma da parte del licenziatario.
+
+Ore-Istanza-Virtual Processor Core
+
+Ore-Istanza-Virtual Processor Core è un'unità di misura in base alla quale il Programma può essere concesso in licenza. Un'Ora corrisponde a sessanta (60) minuti. L'utilizzo del Programma sarà calcolato in incrementi di minuti interi. Un Server Fisico è un computer fisico che comprende unità di elaborazione, memoria e capacità di input/output e che esegue le procedure, i comandi o le applicazioni richieste per uno o più utenti o dispositivi client. Quando sono utilizzati rack, enclosure blade o altre apparecchiature simili, ogni dispositivo fisico separabile (ad esempio, un blade o un dispositivo montato su rack) dotato delle componenti richieste, è considerato un Server Fisico a parte. Un Server Virtuale è un computer virtuale creato mediante il partizionamento delle risorse disponibili per un Server Fisico o per un Server Fisico non partizionato. Per Processor Core si intende un'unità funzionale, all'interno di un dispositivo di elaborazione, capace di interpretare ed eseguire istruzioni. Un Processor Core è costituito almeno da un'unità di controllo istruzioni e una o più unità aritmetiche o logiche. Per Virtual Processor Core (VPC) si intende un Processor Core in un Server fisico non partizionato oppure un core virtuale assegnato ad un Server virtuale. Per Istanza si intende una copia in esecuzione del Programma, da non includere copie del Programma utilizzate a scopi di backup, in particolare quelle designate come "cold" o "warm", secondo la definizione riportata nel documento IBM Software Licensed under the IPLA - Backup Use Defined, reperibile al seguente indirizzo: http://www.ibm.com/softwarepolicies.
+
+Si devono ottenere titolarità sufficienti per il numero totale di Ore in cui ogni VPC è stato reso disponibile per ogni Istanza del Programma nel termine fisso di dodici (12) mesi. Il licenziatario dovrà utilizzare lo strumento di misurazione fornito con il Programma per monitorare il proprio utilizzo del Programma stesso. Se non si utilizza lo strumento di misurazione, si dovranno ottenere titolarità per 720 Ore mensili, per ogni VPC presente nell'ambiente del licenziatario e che può essere messo a disposizione di un'Istanza del Programma, indipendentemente dal fatto che il VPC venga messo a disposizione o sia stato messo a disposizione di un'Istanza del Programma.
+
+Inoltre, le seguenti clausole si applicano all'utilizzo del Programma da parte del licenziatario.
+
+Il licenziatario si impegna ad acquistare "VPC Hours" (Virtual Processor Core-Instance-Hours - Ore-Istanza-Virtual Processor Core) pari al numero cumulativo di VPC Hours utilizzate dal licenziatario per il Programma nei dodici (12) mesi precedenti (VPC Year Use - Utilizzo annuale Virtual Processor Core) entro trenta (30) giorni dopo l'utilizzo annuale Virtual Processor Core da parte del licenziatario.
+
+
+L/N:  L-YYAG-BGRQ27
+D/N:  L-YYAG-BGRQ27
+P/N:  L-YYAG-BGRQ27
+
+
+
+
+
+

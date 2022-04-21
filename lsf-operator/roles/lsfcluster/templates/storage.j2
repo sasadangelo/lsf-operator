@@ -1,0 +1,78 @@
+---
+# tasks file for lsf storage
+- name: Create a PersistentVolumeClaim for lsf conf and logs
+  k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: "{{ CNAME }}-pvc" 
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+      spec:
+        accessModes:
+          - ReadWriteMany
+        resources:
+          requests:
+            storage: "{{ cluster.pvc.size }}"
+{% if cluster.pvc.dynamic_storage is defined and cluster.pvc.dynamic_storage %}
+{% if cluster.pvc.storage_class is defined %}
+        # dynamicStorage is true and have storage_class
+        storageClassName: "{{ cluster.pvc.storage_class | default(nil) }}"
+{% else %}
+        # dynamicStorage is true
+{% endif %}
+{% else %}
+{% if cluster.pvc.storage_class is defined %}
+        # dynamicStorage is false
+        storageClassName: "{{ cluster.pvc.storage_class | default('') }}"
+{% endif %}
+{% if ( cluster.pvc.selectorLabel is defined and cluster.pvc.selectorLabel != "" ) or ( cluster.pvc.selector_label is defined and cluster.pvc.selector_label != "" ) %}
+        selector:
+          matchExpressions:
+            - {key: "{% if cluster.pvc.selector_label is defined %}{{ cluster.pvc.selector_label }}{% else %}{{ cluster.pvc.selectorLabel }}{% endif %}", operator: In, values: ["{% if cluster.pvc.selector_value is defined %}{{ cluster.pvc.selector_value }}{% else %}{{ cluster.pvc.selectorValue }}{% endif %}"]}
+{% endif %}
+{% endif %}
+
+{% if cluster.volumes is defined and cluster.volumes is not none %}
+{% for vol in cluster.volumes %}
+- name: Create a PersistentVolumeClaim for {{ vol.name }}
+  k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
+        namespace: "{{ namespace }}"
+        labels:
+          app.kubernetes.io/name: "ibm-spectrum-lsf"
+          app.kubernetes.io/managed-by: "lsfclusters.lsf.spectrumcomputing.ibm.com"
+          app.kubernetes.io/instance: "lsf"
+          release: "lsf"
+      spec:
+        # bind to an existing pv.
+{% if vol.selectorLabel is defined or vol.selector_label is defined %}
+        selector:
+          matchExpressions:
+            - {key: "{% if vol.selector_label is defined %}{{ vol.selector_label }}{% else %}{{ vol.selectorLabel }}{% endif %}", operator: In, values: ["{% if vol.selector_value is defined %}{{ vol.selector_value }}{% else %}{{ vol.selectorValue }}{% endif %}"]}
+{% endif %}
+        accessModes:
+          - "{% if vol.access_modes is defined %}{{ vol.access_modes }}{% else %}ReadOnlyMany{% endif %}"
+        resources:
+          requests:
+            storage: "{% if vol.size is defined and vol.size != "" %}{{ vol.size }}{% else %}10G{% endif %}"
+{% if vol.storage_class is defined and vol.storage_class != '' %}
+        storageClassName: "{{ vol.storage_class }}"
+{% else %}
+        storageClassName: ""
+{% endif %}
+
+{% endfor %}
+
+{% endif %}

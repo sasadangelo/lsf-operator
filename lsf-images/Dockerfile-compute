@@ -1,0 +1,93 @@
+#--------------------------------------------------------
+# Copyright IBM Corp. 1992, 2017. All rights reserved.
+# US Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#--------------------------------------------------------
+#
+FROM docker.io/library/centos:7
+
+LABEL name="lsf-comp-@NARCH@" \
+      vendor="IBM" \
+      version="@VERSION@" \
+      release="1" \
+      summary="IBM Spectrum LSF Compute Image" \
+      description="This image contains the resource monitoring and control processes for IBM Spectrum LSF."
+
+
+ADD podfiles /root
+
+# Build the Compute Image
+RUN useradd -s /bin/bash -c "LSF Administrator" -r -d /lsfadmin -u 495 -m lsfadmin \
+    && useradd -s /bin/bash -c "LSF User" -d /lsfuser -m lsfuser \
+    && ls -al /root \
+    && ls -la /lsf-repo \
+    && mv /root/start_lsf.sh / \
+    && chmod 775 /root \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                     Install additional Packages                          -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    #
+    # If you plan to run your jobs on CentOS 7 add any additional packages that the jobs will need
+    # If you plan to use other OS's then add those packages to that image and not here
+    #
+    && yum -y install hostname wget gettext net-tools which iproute iputils openldap openldap-clients systemd-sysv make --setopt=tsflags=nodocs \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                     User Authentication Packages                          -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    #
+    # If you plan to run your jobs on CentOS 7 add any additional packages that are needed in
+    # your datacenter to authenticate users.  If you plan to use a different OS remember to add
+    # the needed packages to that image too.
+    #
+    && yum -y --skip-broken install nss-pam-ldapd authconfig ypbind --setopt=tsflags=nodocs \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                        Install LSF Packages                              -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "Installing RPMs from lsf-repo directory" \
+    # Add any other LSF rpms that your images might need
+    && rpm -ivh /lsf-repo/lsf-conf* \
+    && rpm -ivh /lsf-repo/lsf-man-pages* \
+    && rpm -ivh /lsf-repo/lsf-client* \
+    && rpm -ivh /lsf-repo/lsf-server* \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                         Install jq Packages                              -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && rpm -i /lsf-repo/oniguruma-*.@ARCH@.rpm \
+    && rpm -i /lsf-repo/jq-*.@ARCH@.rpm \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                  Cleanup LSF directories and Config                      -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && chown -R lsfadmin /opt/ibm/lsfsuite/lsf \
+    && chgrp -R lsfadmin /opt/ibm/lsfsuite/lsf \
+    && yum clean all \
+    && rm -rf /var/cache/yum \ 
+    && if [ -e /usr/sbin/ldconfig ]; then /usr/sbin/ldconfig ; fi \
+    && if [ -e /lsf-repo/lsf.entitlement ]; then cp /lsf-repo/lsf.entitlement /opt/ibm/lsfsuite/lsf/.conf_tmpl/ ; else rm -rf /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.entitlement ; fi \
+    && rm -rf /opt/ibm/lsfsuite/lsf/conf \
+    && echo 'export PS1="\[\033[36m\]LSF POD \[\033[33m\][\u:\W]#\033[0m "' >> "$target"/etc/profile.d/prompt.sh \
+    && echo 'LSB_IMPERSONATION_USERS="lsfadmin"' > /etc/lsf.sudoers \
+    && chown root /etc/lsf.sudoers \
+    && chmod 500 /etc/lsf.sudoers \
+    && export IMAGE_HOST=`awk -F'"' '/MASTER_LIST/ {print $(NF-1)}' /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf` \
+    && sed -i -e s:${IMAGE_HOST}:lsfmaster:g /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && sed -i -e s:${IMAGE_HOST}:lsfmaster:g /opt/ibm/lsfsuite/lsf/.conf_tmpl/ego/myCluster/kernel/ego.conf \
+    && sed -i -e s:${IMAGE_HOST}:lsfmaster:g /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.cluster.myCluster \
+    && sed -i -e s:${IMAGE_HOST}:lsfmaster:g /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsbatch/myCluster/configdir/lsb.hosts \
+    && sed -i -e "s:End Host:lsfmaster  0    ()      ()    ()     ()     ()            (Y)   # Example\ngui      0    ()      ()    ()     ()     ()            (Y)   # Example\nEnd Host:g" /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsbatch/myCluster/configdir/lsb.hosts \
+    && echo 'LSF_SERVER_HOSTS="lsfmaster"' >> /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && echo "LSF_HOST_CACHE_NTTL=0" >> /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && echo "LSF_DHCP_ENV=y" >> /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && echo "LSF_HOST_CACHE_DISABLE=y" >> /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && echo "LSF_DYNAMIC_HOST_TIMEOUT=10" >> /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && sed -i -e s:LSF_ENABLE_EGO.*:LSF_ENABLE_EGO=N:g /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.conf \
+    && sed -i -e "s:End Parameters:FLOAT_CLIENTS_ADDR_RANGE=*.*.*.*\nEnd Parameters:g" /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.cluster.myCluster \
+    && sed -i -e "s:End Parameters:FLOAT_CLIENTS=100\nEnd Parameters:g" /opt/ibm/lsfsuite/lsf/.conf_tmpl/lsf.cluster.myCluster \
+    && echo "Compute Image ready"
+
+#
+# EXPOSE 80 7869/udp 7869 6878 6080 6881 6882 22 8080 8443
+
+ENTRYPOINT ["/start_lsf.sh"]

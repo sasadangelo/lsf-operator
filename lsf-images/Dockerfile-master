@@ -1,0 +1,35 @@
+#--------------------------------------------------------
+# Copyright IBM Corp. 1992, 2017. All rights reserved.
+# US Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#--------------------------------------------------------
+FROM lsf-comp-@NARCH@:@VERSION@
+
+LABEL name="lsf-master-@NARCH@" \
+      vendor="IBM" \
+      version="@VERSION@" \
+      release="1" \
+      summary="IBM LSF Scheduler Image" \
+      description="This image contains the LSF Scheduler process."
+   
+
+# Install LSF master packages
+RUN cp -r /opt/ibm/lsfsuite/lsf/.conf_tmpl /opt/ibm/lsfsuite/lsf/conf \
+    && echo "" \
+    && echo "------------------------------------------------------------------------------------" \
+    && echo "-----                        Install LSF Packages                              -----" \
+    && echo "------------------------------------------------------------------------------------" \
+    && rpm -ivh /lsf-repo/lsf-integrations* \
+    && rpm -ivh /lsf-repo/lsf-master* \
+    && rpm -ivh /lsf-repo/lsf-ego-server* \
+    && rpm -ivh /lsf-repo/lsf-ego-master* \
+    && /usr/sbin/ldconfig \
+    && yum clean all \
+    && rm -rf /var/cache/yum \
+    && rm -rf /opt/ibm/lsfsuite/lsf/conf \
+    && mv /opt/ibm/lsfsuite/lsf/work /opt/ibm/lsfsuite/lsf/.work \
+    && mv /root/trigger-reconfig.sh /opt/ibm/lsfsuite/lsf/.conf_tmpl \
+    && chmod 755 /opt/ibm/lsfsuite/lsf/.conf_tmpl/trigger-reconfig.sh \
+    && echo "Master Image ready"
+
+ENTRYPOINT ["/start_lsf.sh"]

@@ -1,0 +1,21 @@
+---
+# vars file for lsf
+
+# This is the cluster name.  It will be the prefix for all
+# parts of the deployment
+CNAME: "{{ cluster.clustername |default('ibm-spectrum-lsf') |lower |replace(' ', '-') }}"
+
+# Set the namespace
+namespace: "{{ ansible_operator_meta.namespace }}"
+
+# Product name.  Used to query the node list
+POD_PREFIX: "ibm-spectrum-lsf"
+
+YAML_TEMP: "/tmp"
+
+COMPUTE_LIST: |
+  {% set comp = [] %}
+  {% for c in computes %}
+  {% if comp.append(c.name) %}{% endif %}
+  {% endfor %}
+  {{ comp }}
