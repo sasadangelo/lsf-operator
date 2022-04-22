@@ -6,12 +6,14 @@ The LSF Operator is the automation tool that is used to deploy the LSF cluster. 
 It is recommended that LSF be deployed in a seperate namespace.  Use the following to create a namespace/project to run the LSF cluster in:
 On Kubernetes run:
 ```
-kubectl create namespace lsf
+kubectl create namespace {Your namespace}
 ```
 On OpenShift run:
 ```
-oc new-project lsf
+oc new-project {Your namespace}
 ```
+
+**NOTE:  For the rest of the instructions the namespace will be assumed to be "lsf".**
 
 Create the Custom Resource Definition using either **kubectl** or **oc** using:
 ```
@@ -20,9 +22,9 @@ kubectl create -f lsf-operator/config/crd/bases/lsf.spectrumcomputing.ibm.com_ls
 
 Create the service account the LSF operator will run and set permissions:
 ```
-kubectl create -f lsf-operator/config/rbac/service_account.yaml
-kubectl create -f lsf-operator/config/rbac/role.yaml
-kubectl create -f lsf-operator/config/rbac/role_binding.yaml
+kubectl create -n lsf -f lsf-operator/config/rbac/service_account.yaml
+kubectl create -n lsf -f lsf-operator/config/rbac/role.yaml
+kubectl create -n lsf -f lsf-operator/config/rbac/role_binding.yaml
 ```
 
 ## Deploy the LSF Operator
@@ -33,7 +35,7 @@ The LSF operator will use the image created previously.  The LSF operator image 
 
 Use the following command to deploy the LSF Operator:
 ```
-kubectl create -f lsf-operator/config/manager/manager.yaml
+kubectl create -n lsf -f lsf-operator/config/manager/manager.yaml
 ```
 To see the state of the LSF operator run:
 ```
@@ -52,3 +54,21 @@ If it fails to get ready, check the logs by running:
 kubectl logs -n lsf -f $(kubectl get pods -n lsf |grep ibm-lsf-operator |awk '{ print $1 }')
 ```
 You can also watch the operator run when it is deploying the LSF cluster using this command.
+
+## Deleting the LSF Operator
+The LSF operator can be deleted by running:
+```
+kubectl create -n lsf -f lsf-operator/config/manager/manager.yaml
+```
+
+To remove the account, permissions and custom resource definition run the following as a cluster administrator:
+```
+kubectl delete -n lsf -f lsf-operator/config/rbac/role_binding.yaml
+kubectl delete -n lsf -f lsf-operator/config/rbac/role.yaml
+kubectl delete -n lsf -f lsf-operator/config/rbac/service_account.yaml
+kubectl create -f lsf-operator/config/crd/bases/lsf.spectrumcomputing.ibm.com_lsfclusters.yaml
+```
+
+**NOTE:  This will also cause any LSF clusters to be deleted too.**
+
+[Return to previous page](README.md)

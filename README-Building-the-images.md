@@ -28,6 +28,7 @@ The x86_64 images are:
 * lsf-master-amd64_10.xxx.tar.gz
 * lsf-comp-amd64_10.xxx.tar.gz
 * lsf-gui-amd64_10.xxx.tar.gz
+
 A POWER and x86 machine is needed to generate the images. 
 
 Use the steps below to create the initial images:
@@ -39,18 +40,19 @@ cd lsf-operator
 ```
 
 2. Copy the LSF Suite RPMs into the lsf-repo directory.  On the machine where the LSF Suite bin file was run locate the /var/www/html/lsf_suite_pkgs/{Architecture} directory.  In there will be the LSF Suite RPMs.  Copy the following list of rpms to the lsf-repo directory created in the step above 
-* ibm-jre
-* lsf-appcenter
-* lsf-client
-* lsf-conf
-* lsf-ego-master
-* lsf-ego-server
-* lsf-gui
-* lsf-integrations
-* lsf-man-pages
-* lsf-master
-* lsf-perf
-* lsf-server
+  * ibm-jre
+  * lsf-appcenter
+  * lsf-client
+  * lsf-conf
+  * lsf-ego-master
+  * lsf-ego-server
+  * lsf-gui
+  * lsf-integrations
+  * lsf-man-pages
+  * lsf-master
+  * lsf-perf
+  * lsf-server
+
 If you want other LSF features in the images copy the other needed rpms.
 
 3. Copy the entitlement files from the machine where the LSF Suite bin file was run.  Locate the entitlement files in /opt/ibm/lsf_installer/entitlement.  Copy them to the **lsf-repo** directory created in the first step.
@@ -74,3 +76,4 @@ make
 ```
 If there errors edit the Dockerfiles and rebuild.
 
+[Return to previous page](README.md)
