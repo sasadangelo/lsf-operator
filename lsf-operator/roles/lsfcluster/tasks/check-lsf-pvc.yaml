@@ -1,0 +1,52 @@
+##############################################################################
+# Licensed Materials - Property of IBM.
+# Copyright IBM Corporation 2019. All Rights Reserved.
+# U.S. Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+#
+# Contributors:
+#  IBM Corporation - initial API and implementation
+###############################################################################
+---
+
+- name: User provided Cluster variables debug
+  debug:
+    var: cluster
+
+- name: Fail if cluster.lsfpvcname is undefined
+  fail:
+    msg: The cluster.lsfpvcname must be defined
+  when:
+    - cluster is not defined or cluster.lsfpvcname is not defined
+
+- name: save
+  set_fact:
+    use_lsfpvcname: "{{ cluster.lsfpvcname }}"
+
+- name: Get the info for the lsfpvcname
+  k8s_info:
+    kind: persistentvolumeclaims
+    namespace: "{{ namespace }}"
+    name: "{{ cluster.lsfpvcname }}"
+  register: lsfpvcname_CR
+  retries: 5
+  delay: 10
+
+- name: Display existing lsfpvcname info
+  debug:
+    var: lsfpvcname_CR
+
+- name: Fail if the lsfpvcname is not valid
+  fail:
+    msg: "The storage PVC {{ cluster.lsfpvcname }} needs to be created before deploying the cluster"
+  when: lsfpvcname_CR.resources | length == 0
+
+- name: Fail if the accessModes is wrong
+  fail:
+    msg: "The storage PVC {{ cluster.lsfpvcname }} needs accessMode ReadWriteMany"
+  when:
+    - lsfpvcname_CR.resources | length != 0
+    - lsfpvcname_CR.resources[0].spec is not defined
+    - lsfpvcname_CR.resources[0].spec.accessModes is not defined
+    - lsfpvcname_CR.resources[0].spec.accessModes != "ReadWriteMany"
+

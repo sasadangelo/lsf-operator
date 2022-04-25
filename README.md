@@ -7,11 +7,19 @@
 Welcome to the LSF on Kubernetes repository.  IBM® Spectrum LSF (formerly IBM® Platform™ LSF®) is a complete workload management solution for demanding HPC environments. Featuring intelligent, policy-driven scheduling and easy to use interfaces for job and workflow management, it helps organizations to improve competitiveness by accelerating research and design while controlling costs through superior resource utilization.
 
 ## Repository Contents
-This repository contains code for packaging LSF as images for running on Kubernetes / OpenShift.  It also contains the code for an Operator for automating the deployment of LSF.  The diagram below illustrates the LSF use case supported by the code in this repository.
+This repository contains code for packaging LSF as images for running on Kubernetes / OpenShift.  It also contains the code for an Operator for automating the deployment of LSF.  This code can be used in conjunction with LSF Suite to deploy LSF clusters on Kubernetes or OpenShift.
+
+## What Type of LSF Cluster Will this Deploy
+The diagram below illustrates the LSF use case supported by the code in this repository.
 
 ![Architecture Diagram](LSFonK8s-overview-v2.png)
 
-The operator will deploy a functioning LSF cluster on Kubernetes.  The LSF cluster will get its resources from Kubernetes.  The jobs will run inside the LSF Agent pods.  The LSF agent pods will provide the OS prerequisites, and LSF binaries.  The application can be built into the LSF Agent pods or mounted from an external NFS server.
+The LSF cluster will get its resources from Kubernetes.  The LSF cluster will run entirely inside of Kubernetes.  External datacenter resources for storage and user authentication may also be accessed.  This provides a way for the LSF compute pods to access any application and user data to process.
+
+The operator will deploy a functioning LSF cluster on Kubernetes.  Its function is to create the other pods in the cluster as well as other Kubernetes obkects that the LSF cluster needs.
+The LSF Master pod runs the Scheduler processes for dispatching the batch jobs.  Configuration is stored on a Persistant Volume (not shown in this diagram).
+The LSF agent pods are the compute pods. The jobs will run inside the LSF Agent pods.  The LSF agent pods will provide the OS prerequisites, and LSF binaries.  The application can be built into the LSF Agent pods or mounted from an external NFS server.
+The LSF GUI pod runs the LSF Application Center.  Users can login to the web GUI running on this pod and submit jobs.  They may also use the REST interface provided by this pod with the desktop client to run jobs.
 
 User authentication services can be enabled in the LSF pods.  This allows regular users to login and run jobs.  Home directories, datasets, and application binaries can be mounted in the pods.
 
@@ -30,6 +38,7 @@ The following are needed to create the LSF images and deploy an LSF cluster:
 * The LSF Suite bin file
 * Podman
 * Jq
+
 A Kubernetes secret is also required to provide the database password.
 
 ### Recommended Additions
@@ -38,7 +47,7 @@ The following are also recommended:
 * Persistent Volumes for application binaries
 * LDAP/NIS/YP authentication server that the LSF pods can use for user authentication
 
-### Resource Requirements
+## Resource Requirements
 The resources that are given to the pods will govern the number and size of pods that can be run on the cluster.  The compute pods should b
 e as large as possible.  The minimal requirements for an LSF on Kubernetes cluster are:
 * Operator Pod:

@@ -184,7 +184,7 @@ and cluster.userauth.configs is not none %}
             volumes:
               - name: conf-volume
                 persistentVolumeClaim:
-                  claimName: "{{ CNAME }}-pvc"
+                  claimName: "{{ cluster.lsfpvcname }}"
 {% if cluster.userauth.authconfigargs is defined and
 cluster.userauth.authconfigargs != '' and cluster.userauth.configs is defined
 and cluster.userauth.configs is not none %}
@@ -209,8 +209,7 @@ and cluster.userauth.configs is not none %}
 {% for vol in cluster.volumes %}
               - name: "{{ vol.name | lower | replace(' ', '-') }}"
                 persistentVolumeClaim:
-                  claimName: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
-# Removed Extra trailing space in claimName
+                  claimName: "{{ vol.pvcname }}"
 {% endfor %}
 {% endif %}
 

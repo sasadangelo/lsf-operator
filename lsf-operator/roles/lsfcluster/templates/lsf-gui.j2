@@ -225,7 +225,7 @@ and cluster.userauth.configs is not none %}
             volumes:
               - name: conf-volume
                 persistentVolumeClaim:
-                  claimName: "{{ CNAME }}-pvc"
+                  claimName: "{{ cluster.lsfpvcname }}"
               - name: db-pass
                 secret:
 {% if gui.db.passwordSecret is defined and gui.db.passwordSecret is not none %}
@@ -256,7 +256,7 @@ and cluster.userauth.configs is not none %}
 {% for vol in cluster.volumes %}
               - name: "{{ vol.name | lower | replace(' ', '-') }}"
                 persistentVolumeClaim:
-                  claimName: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
+                  claimName: "{{ vol.pvcname }}"
 {% endfor %}
 {% endif %}
 

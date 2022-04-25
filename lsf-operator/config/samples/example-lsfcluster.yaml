@@ -49,13 +49,8 @@ spec:
     # administrators:
     # - someuser
 
-    # PersistentVolumeClaim (Storage volume) parameters
-    pvc:
-      dynamicStorage: false
-      #storageClass: ""
-      selectorLabel: "lsfvol"
-      selectorValue: "lsfvol"
-      size: "20G"
+    # PersistentVolumeClaim (Storage volume) for LSF
+    lsfpvcname: "mylsfpvc"
 
     # The cluster needs to access users home directories and applications
     # This section allows you to define the PersistentVolume to use to 
@@ -64,18 +59,10 @@ spec:
     # volumes:
     # - name: "Home"
     #   mount: "/home"
-    #   selectorLabel: "realhome"
-    #   selectorValue: "realhome"
-    #   accessModes: "ReadWriteMany"
-    #   size: "9G"
-    #   storageClass: ""
+    #   pvcname: homepvc
     # - name: "Applications"
     #   mount: "/apps"
-    #   selectorLabel: "apps"
-    #   selectorValue: "apps"
-    #   accessModes: "ReadOnlyMany"
-    #   size: ""
-    #   storageClass: ""
+    #   pvcname: appspvc
 
     # This section is for configuring username resolution
     # The pods will call "authconfig" to setup the authentication

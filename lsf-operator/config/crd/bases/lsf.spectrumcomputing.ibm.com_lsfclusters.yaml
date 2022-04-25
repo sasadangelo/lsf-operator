@@ -75,9 +75,6 @@ spec:
                 description: "These are cluster wide configuration parameters"
                 type: object
                 properties:
-                  lsfrole:
-                    type: string
-                    description: "Either lsf or podscheduler"
                   clustername:
                     type: string
                     description: "Prefix for objects created for this cluster"
@@ -86,20 +83,9 @@ spec:
                     type: array
                     items:
                       type: string
-                  pvc:
-                    description: "Storage for failover"
-                    type: object
-                    properties:
-                      dynamicStorage:
-                        type: boolean
-                      storageClass:
-                        type: string
-                      selectorLabel:
-                        type: string
-                      selectorValue:
-                        type: string
-                      size:
-                        type: string
+                  lsfpvcname:
+                    description: "Storage for LSF failover"
+                    type: string
                   volumes:
                     description: "List of additional volumes to mpount to all LSF pods"
                     type: array
@@ -110,15 +96,7 @@ spec:
                           type: string
                         mount:
                           type: string
-                        selectorLabel:
-                          type: string
-                        selectorValue:
-                          type: string
-                        accessModes:
-                          type: string
-                        size:
-                          type: string
-                        storageClass:
+                        pvcname:
                           type: string
                   userauth:
                     description: "Configutation for providing user authentication within pods"

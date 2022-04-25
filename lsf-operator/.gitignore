@@ -12,3 +12,5 @@ bin
 *.swp
 *.swo
 *~
+
+lsf-operator*.tar.gz

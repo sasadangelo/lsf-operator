@@ -206,7 +206,7 @@
 {% for vol in cluster.volumes %}
               - name: "{{ vol.name | lower | replace(' ', '-') }}"
                 persistentVolumeClaim:
-                  claimName: "{{ CNAME }}-{{ vol.name | lower | replace(' ', '-') }}"
+                  claimName: "{{ vol.pvcname }}"
 {% endfor %}
 {% endif %}
 {% if comp.mount_list is defined and comp.mount_list is not none %}

@@ -18,24 +18,11 @@
 # Create the network policy
 - include: lsf-network.yaml
 
-# Create the PVC
-- name: Generate the storage.yaml
-  template:
-    src: ../templates/storage.j2
-    dest: "{{ YAML_TEMP }}/{{ CNAME }}-storage.yaml"
-  when: master.replicas != 0
-
-- include: "{{ YAML_TEMP }}/{{ CNAME }}-storage.yaml"
-  static: no
-  when: master.replicas != 0
+# Check the LSF PVC
+- include: check-lsf-pvc.yaml
 
 - include: service.yaml
   when: master.replicas != 0
-
-#- name: Dump variables for debugging
-#  template:
-#    src: ../templates/dumpall.j2
-#    dest: /tmp/dumpall.log2
 
 - name: Generate the lsf-agent.yaml
   template:
@@ -50,11 +37,6 @@
   template:
     src: ../templates/lsf-deployment.j2
     dest: "{{ YAML_TEMP }}/{{ CNAME }}-lsf-deployment.yaml"
-
-#- name: Dump variables for debugging
-#  template:
-#    src: ../templates/dumpall.j2
-#    dest: /tmp/dumpall.log
 
 - name: Generate the lsf-gui.yaml
   template:
