@@ -83,10 +83,10 @@ Running LSF on Kubernetes will take some time to get the LSF agents correctly co
 
 1. [Build the Initial Images](README-Building-the-images.md)
 2. [Deploy the LSF Operator](README-lsf-operator.md)
-3. [Deploying the LSF Cluster](README-deploying-lsf-cluster.md)
-4. [Setting up Storage](README-setting-up-storage.md)
+3. [Setting up Storage](README-setting-up-storage.md)
+4. [Deploying the LSF Cluster](README-deploying-lsf-cluster.md)
 5. [Setting up User Authentication](README-setting-up-user-authentication.md)
 6. [Customizing Images for Running Jobs](README-custom-images.md)
 
-
-*NOTE: This code is provided without support.*
+## Getting Help
+This code is provided without support.  You are free to submit issues and pull requests.

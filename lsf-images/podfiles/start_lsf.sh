@@ -17,7 +17,7 @@
 #                               configuration to enable the K8s integration
 
 # The script version is here to make sure you have the right version when testing
-SCRIPT_VER=v107
+SCRIPT_VER=v1
 
 # The PRODUCT name is used to filter the host lists to determine which hosts are
 # part of the cluster.  Use care when changing the names of the deplayments and 
@@ -440,10 +440,10 @@ EOF
 function start_authdaemons()
 {
     log_info "Running: start_authdaemons()"
-    if [ ! -e /etc/.userresolve ]; then
-        log_info "     User Resoultion is not configured"
-        return
-    fi
+    #if [ ! -e /etc/.userresolve ]; then
+    #    log_info "     User Resoultion is not configured"
+    #    return
+    #fi
 
     if [ "${AUTHDAEMONS}" != "" ]; then
         local RESSTR=""
