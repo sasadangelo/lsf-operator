@@ -21,22 +21,6 @@ spec:
   # Use the search option to find IBM Spectrum LSF CE
   licenseAccepted: false
 
-  # This flag is used to control the network access mode.  This has security
-  # and scalability implications.  The options are:
-  #   k8s     - This will use the software defined networking provided by
-  #             kubernetes.  LSF will be hosted entirely in Kubernetes.
-  #             Access to LSF will be through the GUI, API, or login nodes.
-  #             This is not for high scale.  No bare metal compute hosts are
-  #             allowed.
-  #   host    - This will use hostNetworking in Kubernetes to give the LSF pod
-  #             direct access to the network.  This mode supports bare metal compute
-  #             hosts and high scale.  It requires that there be no more than
-  #             one LSF pod on any Kubernetes worker node.  Use the placement
-  #             labels in the LSF zone yaml to control how the LSF pods will
-  #             be placed on the worker nodes.
-  # NOTE:  A re-install is required to change this mode.
-  networking: k8s
-
   # Provide an imagePullSecret when pulling images from a private registry
   #imagepullsecret: use-your-secret
 
