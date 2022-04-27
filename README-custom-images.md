@@ -35,6 +35,7 @@ FROM ubuntu:latest      <----- Set this to the OS image you wish to base the LSF
   * which
   * iproute
   * iputils
+
 You will need to locate the OS packages that provide these and install them with the OS appropriate command e.g.
 ```bash
 RUN yum -y install hostname wget gettext net-tools which iproute iputils openldap openldap-clients systemd-sysv make
@@ -55,7 +56,7 @@ RUN yum -y install jq
 # service used.  Use the appropriate OS commands to install the needed services.
 # below is an example for CentOS and LDAP.  If you need to setup any configuration
 # files for authentication it is best to do it here as well.
-RUN && yum -y install openldap openldap-clients nss-pam-ldapd authconfig ypbind --setopt=tsflags=nodocs
+RUN yum -y install openldap openldap-clients nss-pam-ldapd authconfig ypbind --setopt=tsflags=nodocs
 ```
 
 6. The applications that are to run on the cluster may have dependencies on OS packages.  Install the packages using OS appropriate command e.g.
@@ -72,9 +73,9 @@ make other-compute
 
 8. Fix any errors in the `Dockerfile-compute-other-os` file.
 
-When the build is successful it will generate a tar.gz file.  Use the proceedure outlined in the [building images](README-Building-the-images.md) documentation to load, tag and push the image to your registry.  Use the steps below to include create an additional compute type in the LSf cluster spec file, and deploy your cluster.
+When the build is successful it will generate a tar.gz file.  Use the proceedure outlined in the [building images](README-Building-the-images.md) documentation to load, tag and push the image to your registry.  Use the steps below to include an additional compute type in the LSf cluster spec file, and deploy your cluster.
 
-If needed change the contents of the `Dockerfile-compute-other-os` file until it is able to run your jobs.
+Change the contents of the `Dockerfile-compute-other-os` file until it is able to run your jobs.
 
 
 ## How to Run Other OS Images in the LSF Cluster
