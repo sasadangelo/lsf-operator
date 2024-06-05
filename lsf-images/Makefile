@@ -6,9 +6,10 @@
 
 # The version set below will override the Chart.yaml versions
 VER=10.1.0.13
+OPERVER=1.0.1
 
-ARCH=$(shell arch)
-NARCH=$(shell if [ `arch` = "x86_64" ]; then echo "amd64" ; else echo "`arch`" ; fi)
+ARCH=$(shell uname -m)
+NARCH=$(shell if [ `uname -m` = "x86_64" ]; then echo "amd64" ; else echo "`uname -m`" ; fi)
 CPWD=$(shell pwd)
 
 # This is the name of my custom OS LSF Compute image
@@ -42,7 +43,7 @@ other-compute: Dockerfile-compute-other-os ${IMAGECOMP}-${NARCH}_${VER}.tar.gz
 	sed -e s:@VERSION@:${VER}:g < Dockerfile-compute-other-os > Dockerfile
 	sed -i -e s:@NARCH@:${NARCH}:g Dockerfile
 	sed -i -e s:@ARCH@:${ARCH}:g Dockerfile
-	podman build --no-cache --force-rm=true --rm --cpuset-cpus="0-1" --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGEMYOS}-${NARCH}:${VER} .
+	podman build --no-cache --force-rm=true --rm --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGEMYOS}-${NARCH}:${VER} .
 	podman save -o ${IMAGEMYOS}-${NARCH}_${VER}.tar.gz ${IMAGEMYOS}-${NARCH}:${VER}
 	-@rm -rf Dockerfile
 	@chmod 644 ${IMAGEMYOS}-${NARCH}_${VER}.tar.gz
@@ -76,7 +77,7 @@ ${IMAGECOMP}-${NARCH}_${VER}.tar.gz: Dockerfile-compute
 	sed -e s:@VERSION@:${VER}:g < Dockerfile-compute > Dockerfile
 	sed -i -e s:@NARCH@:${NARCH}:g Dockerfile
 	sed -i -e s:@ARCH@:${ARCH}:g Dockerfile
-	podman build --no-cache --force-rm=true --rm --cpuset-cpus="0-1" --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGECOMP}-${NARCH}:${VER} .
+	podman build --no-cache --force-rm=true --rm --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGECOMP}-${NARCH}:${VER} .
 	podman save -o ${IMAGECOMP}-${NARCH}_${VER}.tar.gz ${IMAGECOMP}-${NARCH}:${VER}
 	-@rm -rf Dockerfile rpms-compute
 	@chmod 644 ${IMAGECOMP}-${NARCH}_${VER}.tar.gz
@@ -95,7 +96,7 @@ ${IMAGEGUI}-${NARCH}_${VER}.tar.gz: ${IMAGECOMP}-${NARCH}_${VER}.tar.gz
 	sed -e s:@VERSION@:${VER}:g < Dockerfile-gui > Dockerfile
 	sed -i -e s:@NARCH@:${NARCH}:g Dockerfile
 	sed -i -e s:@ARCH@:${ARCH}:g Dockerfile
-	podman build --no-cache --force-rm=true --rm --cpuset-cpus="0-1" --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGEGUI}-${NARCH}:${VER} .
+	podman build --no-cache --force-rm=true --rm --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGEGUI}-${NARCH}:${VER} .
 	podman save -o ${IMAGEGUI}-${NARCH}_${VER}.tar.gz ${IMAGEGUI}-${NARCH}:${VER}
 	-@rm -rf Dockerfile
 	@chmod 644 ${IMAGEGUI}-${NARCH}_${VER}.tar.gz
@@ -113,7 +114,7 @@ ${IMAGENAME}-${NARCH}_${VER}.tar.gz: Dockerfile-master ${IMAGECOMP}-${NARCH}_${V
 	sed -e s:@VERSION@:${VER}:g < Dockerfile-master > Dockerfile
 	sed -i -e s:@NARCH@:${NARCH}:g Dockerfile
 	sed -i -e s:@ARCH@:${ARCH}:g Dockerfile
-	podman build --no-cache --force-rm=true --rm --cpuset-cpus="0-1" --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGENAME}-${NARCH}:${VER} .
+	podman build --no-cache --force-rm=true --rm --network host -v${CPWD}/../lsf-repo:/lsf-repo --squash -t ${IMAGENAME}-${NARCH}:${VER} .
 	podman save -o ${IMAGENAME}-${NARCH}_${VER}.tar.gz ${IMAGENAME}-${NARCH}:${VER}
 	-@rm -rf Dockerfile rpms-master
 	@chmod 644 ${IMAGENAME}-${NARCH}_${VER}.tar.gz

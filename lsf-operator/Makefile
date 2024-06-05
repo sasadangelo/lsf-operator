@@ -7,8 +7,8 @@
 VER=1.0.1
 
 CREATED=$(shell date "+%Y-%m-%d %R:%S")
-ARCH=$(shell arch)
-NARCH=$(shell if [ `arch` = "x86_64" ]; then echo "amd64" ; else echo "`arch`" ; fi)
+ARCH=$(shell uname -m)
+NARCH=$(shell if [ `uname -m` = "x86_64" ]; then echo "amd64" ; else echo "`uname -m`" ; fi)
 
 
 default: lsf-operator-${NARCH}_${VER}.tar.gz
