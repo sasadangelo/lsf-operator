@@ -106,9 +106,9 @@ export MYREGISTRY=some.machine.company.com/some-directory
 4. Tag the LSF images on the local host with the registry and a new version tag e.g
 ```bash
 podman tag localhost/lsf-operator-amd64:1.0.1 ${MYREGISTRY}/lsf-operator-amd64:1.0.1-${BUILD}
-podman tag localhost/lsf-comp-amd64:10.1.0.12 ${MYREGISTRY}/lsf-comp-amd64:10.1.0.13-${BUILD}
-podman tag localhost/lsf-master-amd64:10.1.0.12 ${MYREGISTRY}/lsf-master-amd64:10.1.0.13-${BUILD}
-podman tag localhost/lsf-gui-amd64:10.1.0.12 ${MYREGISTRY}/lsf-gui-amd64:10.1.0.13-${BUILD}
+podman tag localhost/lsf-comp-amd64:10.1.0.13 ${MYREGISTRY}/lsf-comp-amd64:10.1.0.13-${BUILD}
+podman tag localhost/lsf-master-amd64:10.1.0.13 ${MYREGISTRY}/lsf-master-amd64:10.1.0.13-${BUILD}
+podman tag localhost/lsf-gui-amd64:10.1.0.13 ${MYREGISTRY}/lsf-gui-amd64:10.1.0.13-${BUILD}
 ```
 
 5. Push the images to the registry:
