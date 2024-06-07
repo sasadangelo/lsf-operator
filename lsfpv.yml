@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: lsfpv
+spec:
+  accessModes:
+  - ReadWriteMany             # Has to be this for failover
+  capacity:
+    storage: 10Gi             # Specify the amount of storage to provide
+  nfs:
+    path: /73e9d85b_a1fa_4cfc_9c09_6d3e5d6b8963        # Use you exported filesystem from the NFS server
+    server: 10.240.85.5       # Use the IP address of your NFS server
+  mountOptions:
+    - nfsvers=4.2
+    - sec=sys
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  claimRef:
+    name: lsfpvc            # We are pre-binding the PVC to ensure that the correct PVC uses this PV
+    namespace: lsf

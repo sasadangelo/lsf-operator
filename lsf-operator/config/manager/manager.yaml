@@ -53,14 +53,16 @@ spec:
                 values:
                 - amd64
                 - ppc64le
-
+      imagePullSecrets:
+        - name:  all-icr-io
       containers:
         - name: manager
           args:
             - --zap-log-level
             - error
           # Edit the image to match the registry where you pushed the lsf-operator
-          image: "ibmcom/lsfce-operator:1.0.1"
+          image: "icr.io/lsf_test/lsf-operator-amd64:1.0.1-v1"
+          #image: "ibmcom/lsfce-operator:1.0.1"
           imagePullPolicy: "Always"
           env:
             - name: WATCH_NAMESPACE
